@@ -56,7 +56,10 @@ $(document).ready(function(){
     });*/
 
     $("#clear-btn").click(function(){
-        location.reload();
+        $('#oldurls').val("");
+        $('#newurls').val("");
+        $('#ticketnumber').val("");
+        
     });
 
     $('#oldurls').on('input', function() {
