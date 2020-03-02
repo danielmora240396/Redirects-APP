@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/custom-css.css">
+    <script type="text/javascript" src="js/events.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="icon" href="img/icon.png">
+    <title>Redirects Files Generator | SolarWinds | Akamai</title>
+</head>
+<body>
+<div class="custom-header fluid-container navfixedElement">
+    <div class="container">
+        <h1>Akamai File Redirects Generator</h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="fixedElement">
+            <div class="img-logo">
+                <img src="img/1200px-Akamai_logo.svg.png" alt="Akamai Logo">
+            </div>
+            <div class="custom-tabs custom-border-right fixedElement">
+                <div id="description-tab" class="custom-tab custom-active-tab">
+                    Description
+                </div>
+                <div id="old-tab" class="custom-tab">
+                    Old URLs
+                </div>
+                <div id="new-tab" class="custom-tab">
+                    New URLs
+                </div>
+               <div>
+                   <button id="generate_btn" disabled class="form-control disabled-button">
+                       Generate
+                   </button>
+               </div>
+               <div>
+                    <button id="clear-btn" class="form-control">
+                        Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="fields-section col-sm-9">
+            <div class="description-section">
+                <label for="ticketnumber">Ticket Description</label>
+                <input id="ticketnumber" placeholder="Ticket number and description" type="text" class="form-control">
+            </div>
+            <div class="old-urls-section">
+                <label for="">Old URLs</label>
+                <textarea name="" id="oldurls" cols="30" rows="10" class="form-control" placeholder=""></textarea>
+            </div>
+            <div class="new-urls-section">
+                <label for="">New URLs</label>
+                <textarea name="" id="newurls" cols="30" rows="10" class="form-control" placeholder=""></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row config">
+        <div class="col-sm-3"><p>Errors found: <span id="error">0</span></p></div>
+        <div class="col-sm-3"><p id="">Host: <span id="host">TBD</span></p></div>
+        <div class="col-sm-3"><label class="checkbox">
+            <input id="301" type="checkbox" value="" checked> 301 (Permanent)
+        </label></div>
+        <div class="col-sm-3"><label class="checkbox">
+            <input id="copy_query" type="checkbox" value="" checked> Copy Query String
+        </label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div style="overflow-x:auto" class="result">
+                <table id="result-table" class="table table-section">
+                    <tr><th>Status</th><th>From (<span id="old-number">0</span>)</th><th>To (<span id="new-number">0</span>)</th><th>Keep Host</th><tr></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4 footer-img">
+                <img src="img/bb-8.png" alt="">
+            </div>
+        </div>
+    </div>
+        
+</div>
+</body>
+</html>

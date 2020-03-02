@@ -1,0 +1,168 @@
+body {
+    background-color: #1F1D1E;
+    color: white;
+}
+
+.custom-header {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: #28292D;
+    color: white;
+    border-bottom: 5px groove #fbe04b;
+}
+
+.footer-img img {
+    width: 40%;
+}
+
+.footer-img {
+    text-align: right;
+}
+
+.footer{
+    margin-top: 50px;
+    background-color: #28292D;
+    color: white;
+    border-top: 5px groove #fbe04b;
+    padding-top: 30px;
+}
+
+.custom-tabs{
+    font-weight: 700;
+    margin-top: 30px;
+
+}
+
+.custom-tab {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 1em;
+}
+
+.custom-border-right {
+    border-right: 3px groove #fbe04b;
+}
+
+.custom-active-tab {
+    border-bottom: 3px groove #fbe04b;
+    border-top: 3px groove #fbe04b;
+}
+
+
+.custom-tab:hover {
+    cursor: pointer;
+}
+
+.custom-tabs > .custom-tab:nth-child(even){
+    background-color: #28292D;
+}
+
+.fields-section {
+    margin-top: 30px;
+}
+
+.fields-section > div {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    background-color: #28292D;
+    color: white;
+
+}
+.form-control:focus {
+    background-color: #28292D;
+    border-color: #fbe04b;
+    color: white;
+}
+
+
+button.form-control {
+    width: 80%;
+    margin-left: 1em;
+    margin-top: 1em;
+}
+
+button.form-control:disabled {
+    opacity: 50% !important;
+    background-color: transparent;
+}
+
+.disabled-button {
+    cursor: no-drop;
+}
+
+.enabled-button{
+    cursor: default;
+}
+
+
+
+.img-logo img {
+    width: 80%;
+    padding-top: 30px;
+}
+
+.img-logo {
+    text-align: center;    
+}
+
+.navfixedElement {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+  }
+
+  .redirect-info {
+      padding-top: 20px;
+      text-align: center;
+  }
+
+  .fixedElement {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 100px;
+  }
+
+  .table {
+      color: white;
+      font-size: 13px;
+  }
+
+  th {
+      text-align: center !important;
+  }
+
+  .table > tr > td:nth-child(4),
+  .table > tr > td:nth-child(1){
+      text-align: center;
+  }
+
+  .header img {
+      height: 20px;
+  }
+
+  .table > tr > td:nth-child(1), td:nth-child(2), td:nth-child(3) {
+    border-right: solid;
+    border-right-width: 1px ;
+  }
+
+
+  .table > tr:nth-child(even){
+      background-color: #28292D;
+  }
+
+  .result {
+      padding-top: 15px;
+  }
+
+  .result p {
+      text-align: center;
+  }
+
+  .config {
+      text-align: center;
+      padding-top: 20px;
+  }
+  
