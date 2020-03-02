@@ -59,6 +59,9 @@ $(document).ready(function(){
         $('#oldurls').val("");
         $('#newurls').val("");
         $('#ticketnumber').val("");
+        $('#generate_btn').removeClass("enabled-button");
+        $('#generate_btn').addClass("disabled-button");
+        $('#generate_btn').prop("disabled", true);
         
     });
 
