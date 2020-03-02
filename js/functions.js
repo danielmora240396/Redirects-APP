@@ -85,7 +85,7 @@ function fill_table(){
     for (let index = 0; index < urla.length; index++) {
         icon = validate_language(urla[index], urlb[index]);
         error+= validate_language_errors(urla[index], urlb[index]);
-        data += "<tr><td><img src='/img/"+icon+"' alt='correct'> </td><td>" + urla[index] + "</td><td>" + urlb[index] + 
+        data += "<tr><td><img src='img/"+icon+"' alt='correct'> </td><td>" + urla[index] + "</td><td>" + urlb[index] + 
           "</td><td><input id='" + index + "' type='checkbox' value='1' "+keep_host(urlb[index])+"></td></tr>"
         
     }
