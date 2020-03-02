@@ -92,9 +92,17 @@ function fill_table(){
 
     $("#result-table").html(data);
     $("#error").html(error);
+}
 
-    
-
+function clear_table(){
+    $('#oldurls').val("");
+    $('#newurls').val("");
+    $('#ticketnumber').val("");
+    $('#generate_btn').removeClass("enabled-button");
+    $('#generate_btn').addClass("disabled-button");
+    $('#generate_btn').prop("disabled", true);
+    var data =  "<tr><th>Status</th><th>From (<span id='old-number'>0</span>)</th><th>To (<span id='new-number'>0</span>)</th><th>Keep Host</th><tr></tr>";
+    $("#result-table").html(data);
 }
 
 function keep_host(url){
