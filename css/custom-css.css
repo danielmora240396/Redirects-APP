@@ -106,14 +106,6 @@ button.form-control:disabled {
 .img-logo {
     text-align: center;    
 }
-
-.navfixedElement {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0px;
-    z-index: 1;
-  }
-
   .redirect-info {
       padding-top: 20px;
       text-align: center;
@@ -164,5 +156,19 @@ button.form-control:disabled {
   .config {
       text-align: center;
       padding-top: 20px;
+  }
+
+  .navfixedElement {
+    text-align: center;
+  }
+
+  @media (min-width: 900px){
+    .navfixedElement {
+        text-align: left;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0px;
+        z-index: 1;
+      }
   }
   
