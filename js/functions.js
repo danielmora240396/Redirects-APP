@@ -103,6 +103,7 @@ function clear_table(){
     $('#generate_btn').prop("disabled", true);
     var data =  "<tr><th>Status</th><th>From (<span id='old-number'>0</span>)</th><th>To (<span id='new-number'>0</span>)</th><th>Keep Host</th><tr></tr>";
     $("#result-table").html(data);
+    $("#ticketnumber").focus();
 }
 
 function keep_host(url){
