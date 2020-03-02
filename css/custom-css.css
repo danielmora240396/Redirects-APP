@@ -8,7 +8,7 @@ body {
     padding-bottom: 1rem;
     background-color: #28292D;
     color: white;
-    border-bottom: 5px groove #fbe04b;
+    border-bottom: 5px groove #E07914;
 }
 
 .footer-img img {
@@ -23,7 +23,7 @@ body {
     margin-top: 50px;
     background-color: #28292D;
     color: white;
-    border-top: 5px groove #fbe04b;
+    border-top: 5px groove #E07914;
     padding-top: 30px;
 }
 
@@ -40,12 +40,12 @@ body {
 }
 
 .custom-border-right {
-    border-right: 3px groove #fbe04b;
+    border-right: 3px groove #E07914;
 }
 
 .custom-active-tab {
-    border-bottom: 3px groove #fbe04b;
-    border-top: 3px groove #fbe04b;
+    border-bottom: 3px groove #E07914;
+    border-top: 3px groove #E07914;
 }
 
 
@@ -72,7 +72,7 @@ body {
 }
 .form-control:focus {
     background-color: #28292D;
-    border-color: #fbe04b;
+    border-color: #E07914;
     color: white;
 }
 
