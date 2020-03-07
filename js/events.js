@@ -74,9 +74,6 @@ $(document).ready(function(){
             }
             is_ready();
         }, 700);
-        if (!validate_host()) {
-            alert("This host is not supported by the policies included in Akamai Platform");
-        }
         
     });
 
