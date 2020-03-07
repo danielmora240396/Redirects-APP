@@ -24,6 +24,7 @@ var english_content = "# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     "# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -,,,,,,,,,,,\n" +
     "ruleName,matchURL,scheme,host,path,query,disabled,result.useIncomingQueryString,result.useIncomingSchemeAndHost,result.useRelativeUrl,result.redirectURL,result.statusCode\n";
 
+    var supported_hosts = ["www.solarwinds.com", "www.dameware.com", "www.webhelpdesk.com", "www.kiwisyslog.com", "www.serv-u.com", "www.appoptics.com"];
 
 function remove_protocol(){
     var old = get_initial();
@@ -264,6 +265,19 @@ function download_file(filename, text){
 function get_quantity(){
     $("#old-number").text(get_initial().length);
     $("#new-number").text(get_new().length);
+}
+
+
+function validate_host(){
+    var host = get_host();
+    var flag = false;
+    for (let index = 0; index < supported_hosts.length; index++) {
+        if (host == supported_hosts[index]) {
+            flag = true;
+            break;
+        }
+    }
+    return flag;
 }
 
 
