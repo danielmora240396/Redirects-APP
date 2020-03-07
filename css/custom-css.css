@@ -104,7 +104,7 @@ button.form-control:disabled {
 }
 
 .img-logo {
-    text-align: center;    
+    text-align: left;    
 }
   .redirect-info {
       padding-top: 20px;
@@ -115,6 +115,7 @@ button.form-control:disabled {
     position: -webkit-sticky;
     position: sticky;
     top: 0px;
+    z-index: 1;
   }
 
   .table {
