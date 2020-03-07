@@ -39,6 +39,10 @@ $(document).ready(function(){
         $("#old-tab").removeClass("custom-active-tab");
     })
 
+    $("#ticketnumber").change(function(){
+        $("#ticketnumber").val($("#ticketnumber").val().trim());
+    });
+
     /*$("#oldurls").change(function(){
         
         
