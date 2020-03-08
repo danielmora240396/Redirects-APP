@@ -188,7 +188,7 @@ function fill_table(){
         } else {
             var data = "<tr><th>Status</th><th>From (<span id='old-number'>" + get_old_urls().length + "</span>)</th><th>To (<span id='new-number'>" + get_new_urls().length + "</span>)</th><th>Keep Host</th><tr></tr>\n";
             for (let i = 0; i < old_urls.length; i++) {
-                data += "<tr><td><img src='img/" + validate_language(old_urls[i], new_urls[i]) +".png' alt='warning'></td><td>" + old_urls[i] + "</td><td>" + new_urls[i] + "</td><td><input id='"+ (i) +"' type='checkbox' " + keep_host(new_urls[i]) +"></td></tr>"
+                data += "<tr><td><img src='img/" + validate_language(old_urls[i], new_urls[i]) +".png' alt='warning'></td><td>" + old_urls[i] + "</td><td>" + new_urls[i] + "</td><td><input id='"+ (i) +"' type='checkbox' " + keep_host(new_urls[i]) +" disabled></td></tr>"
             }
         }
     }
