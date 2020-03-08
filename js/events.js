@@ -41,63 +41,27 @@ $(document).ready(function(){
 
     $("#ticketnumber").change(function(){
         $("#ticketnumber").val($("#ticketnumber").val().trim());
+        enable_button();
+    })
+
+    $("#oldurls").on('input', function(){
+       format_old();
+       format_new();
+       enable_button();
     });
 
-    /*$("#oldurls").change(function(){
-        
-        
-        if ($("#newurls").val().trim() != "") {
-            fill_table();
-        }
-        
-    });*/
-
-    /*$("#newurls").change(function(){
-        
-        if ($("#oldurls").val().trim() != "") {
-            fill_table();
-        }
-    });*/
+    $("#newurls").on('input', function(){
+        format_new();
+        format_old();
+       enable_button();
+     });
 
     $("#clear-btn").click(function(){
-       clear_table();
-        
-    });
-
-    $('#oldurls').on('input', function() {
-        setTimeout(function(){ 
-            remove_protocol();
-            $("#host").text(get_host());
-            if ($("#newurls").val().trim() != "") {
-                fill_table();
-                get_quantity();
-            }
-            is_ready();
-        }, 700);
-        
-    });
-
-    $('#newurls').on('input', function() {
-        setTimeout(function(){
-            format_new()
-            if ($("#oldurls").val().trim() != "") {
-                fill_table();
-                get_quantity();
-    
-            }
-            is_ready();
-        }, 700);
-        
-    });
-
-    $('#ticketnumber').on('input', function() {
-        is_ready();
+        clear();
     });
 
     $("#generate_btn").click(function(){
         generate_content();
     });
-
-
 
 });

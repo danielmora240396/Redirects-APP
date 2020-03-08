@@ -54,7 +54,7 @@
                 <input id="ticketnumber" placeholder="Ticket number and description" type="text" class="form-control">
             </div>
             <div class="old-urls-section">
-                <label for="">Old URLs</label>
+                <label for="">Old URLs <span id="old-errors"></span> </label>
                 <textarea name="" id="oldurls" cols="30" rows="10" class="form-control" placeholder="Old URLs"></textarea>
             </div>
             <div class="new-urls-section">
@@ -66,12 +66,11 @@
 </div>
 <div class="container">
     <div class="row config">
-        <div class="col-sm-3"><p>Errors found: <span id="error">0</span></p></div>
-        <div class="col-sm-3"><p id="">Host: <span id="host">TBD</span></p></div>
-        <div class="col-sm-3"><label class="checkbox">
+        <div class="col-sm-4"><p id="">Host: <span id="host">TBD</span></p></div>
+        <div class="col-sm-4"><label class="checkbox">
             <input id="301" type="checkbox" value="" checked> 301 (Permanent)
         </label></div>
-        <div class="col-sm-3"><label class="checkbox">
+        <div class="col-sm-4"><label class="checkbox">
             <input id="copy_query" type="checkbox" value="" checked> Copy Query String
         </label></div>
     </div>
