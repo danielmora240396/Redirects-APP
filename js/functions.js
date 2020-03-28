@@ -90,10 +90,10 @@ function get_new_urls(){
 }
 
 function format_old(){
-    urls = get_old_urls();
+    var urls = get_old_urls();
     var new_urls = "";
     for (let i = 0; i < urls.length; i++) {
-        new_urls += remove_https(urls[i]) + "\n";
+        new_urls += remove_https(urls[i].trim()) + "\n";
     }
     $("#oldurls").val(new_urls.trim());
     $("#host").text(get_host(get_old_urls()[0]));
@@ -111,10 +111,10 @@ function format_old(){
 }
 
 function format_new(){
-    urls = get_new_urls();
+    var urls = get_new_urls();
     var new_urls = "";
     for (let i = 0; i < urls.length; i++) {
-        new_urls += remove_host(urls[i]) + "\n";
+        new_urls += remove_host(urls[i]).replace(/(\r\n|\n|\r)/gm, "") + "\n";
     }
     $("#newurls").val(new_urls.trim());
     fill_table();
@@ -126,6 +126,9 @@ function remove_host(url){
     if(url.indexOf(get_host(get_old_urls()[0])) > -1){
         new_url = remove_https(url);
         new_url = new_url.replace(get_host(get_old_urls()[0]), '');
+        if (new_url === "") {
+            new_url = "/";
+        }
     }
 
     return new_url;
