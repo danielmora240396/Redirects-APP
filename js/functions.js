@@ -215,9 +215,9 @@ function validate_language(urla, urlb){
 
     if (urla.indexOf("www.dameware.com") > -1) {
         if (urlb.indexOf("/") == 0) {
-            for (let i = 0; i < solarwinds.length; i++) {
+            for (let i = 0; i < dameware.length; i++) {
                 if (urla.indexOf(dameware[i]) > -1 && urlb.indexOf(dameware[i]) == -1 ||
-                    urla.indexOf(dameware[i]) == 1 && urlb.indexOf(dameware[i]) > -1) {
+                    urla.indexOf(dameware[i]) == -1 && urlb.indexOf(dameware[i]) > -1) {
                     outcome = "close";
                 }
             }
