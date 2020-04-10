@@ -14,17 +14,16 @@
 <body>
 <div class="custom-header fluid-container">
     <div class="container">
-        <h1>Akamai File Redirects Generator</h1>
+        <div class="img-logo">
+            <img src="img/1200px-Akamai_logo.svg.png" alt="Akamai Logo">
+        </div>
     </div>
 </div>
-
 <div class="container">
     <div class="row">
         <div class="col-sm-3">
             <div class="fixedElement">
-            <div class="img-logo">
-                <img src="img/1200px-Akamai_logo.svg.png" alt="Akamai Logo">
-            </div>
+            
             <div class="custom-tabs custom-border-right fixedElement">
                 <div id="description-tab" class="custom-tab custom-active-tab">
                     Description
@@ -52,6 +51,17 @@
             <div class="description-section">
                 <label for="ticketnumber">Ticket Description</label>
                 <input id="ticketnumber" placeholder="Ticket number and description" type="text" class="form-control">
+            </div>
+            <div>
+                <label for="selectedDomain">Domain</label>
+                <select class="form-control" name="" id="selectedDomain">
+                    <option value="www.solarwinds.com" selected>www.solarwinds.com</option>
+                    <option value="www.dameware.com">www.dameware.com</option>
+                    <option value="www.webhelpdesk.com">www.webhelpdesk.com</option>
+                    <option value="www.serv-u.com">www.serv-u.com</option>
+                    <option value="www.appoptics.com">www.appoptics.com</option>
+                    <option value="try.solarwinds.com">try.solarwinds.com</option>
+                </select>
             </div>
             <div class="old-urls-section">
                 <label for="">Old URLs <span id="old-errors"></span> </label>

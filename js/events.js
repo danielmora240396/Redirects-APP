@@ -1,5 +1,6 @@
 $(document).ready(function(){
     $("#ticketnumber").focus();
+    $("#host").text($("#selectedDomain").val());
     $("#description-tab").click(function(){
         $("#description-tab").addClass("custom-active-tab");
         $("#new-tab").removeClass("custom-active-tab");
@@ -62,6 +63,10 @@ $(document).ready(function(){
 
     $("#generate_btn").click(function(){
         generate_content();
+    });
+
+    $("#selectedDomain").change(function(){
+        $("#host").text($("#selectedDomain").val());
     });
 
 });
