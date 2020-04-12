@@ -32,6 +32,7 @@ $(document).ready(function(){
         $("#description-tab").removeClass("custom-active-tab");
         $("#new-tab").removeClass("custom-active-tab");
         $("#old-tab").addClass("custom-active-tab");
+
     })
 
     $("#newurls").click(function(){
@@ -48,6 +49,7 @@ $(document).ready(function(){
     $("#oldurls").on('input', function(){
        format_old();
        format_new();
+       duplicated_redirects();
        enable_button();
     });
 
@@ -67,6 +69,10 @@ $(document).ready(function(){
 
     $("#selectedDomain").change(function(){
         $("#host").text($("#selectedDomain").val());
+        if ($("#oldurls").val() != "") {
+            unique_domain();
+        }
+        
     });
 
 });

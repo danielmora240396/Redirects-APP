@@ -301,6 +301,51 @@ function generate_content(){
 
 }
 
+function unique_domain(){
+    var flag = true;
+    var domain = $("#host").text();
+    var old = get_old_urls();
+
+    for (let i = 0; i < old.length; i++) {
+        if (old[i].indexOf(domain) == -1) {
+            flag = false;
+            break;
+        }
+    }
+
+    if (!flag) {
+        $("#old-errors").html("<img src='img/close.png' alt='warning'> Please select one of the supported hosts");
+    } else {
+        $("#old-errors").html("<img src='img/correct.png' alt='correct'>");
+    }
+
+}
+
+function duplicated_redirects(){
+    var old = get_old_urls();
+    var temp;
+    var flag = false;
+    for (let i = 0; i < old.length; i++) {
+        temp = old[i];
+        for (let j = 0; j < old.length; j++) {
+           if (i == j) {
+               continue;
+           } else {
+               if (temp.toLowerCase() === old[j].toLowerCase()) {
+                   flag = true;
+               }
+           }
+            
+        }
+    }
+
+    if (flag) {
+        $("#old-errors").html("<img src='img/close.png' alt='warning'> There are duplicated redirects");
+    } else {
+        $("#old-errors").html("<img src='img/correct.png' alt='correct'>");
+    }
+}
+
 
 
 
