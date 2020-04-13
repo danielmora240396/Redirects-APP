@@ -1,0 +1,84 @@
+<div class="container">
+    <div class="breadcrumbs">
+        <p>Home</p>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="fixedElement">
+            
+            <div class="custom-tabs custom-border-right fixedElement">
+                <div id="description-tab" class="custom-tab custom-active-tab">
+                    Description
+                </div>
+                <div id="old-tab" class="custom-tab">
+                    Old URLs
+                </div>
+                <div id="new-tab" class="custom-tab">
+                    New URLs
+                </div>
+               <div>
+                   <button id="generate_btn" disabled class="form-control disabled-button">
+                       Generate
+                   </button>
+               </div>
+               <div>
+                    <button id="clear-btn" class="form-control">
+                        Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="fields-section col-sm-9">
+            <div class="description-section">
+                <label for="ticketnumber">Ticket Description</label>
+                <input id="ticketnumber" placeholder="Ticket number and description" type="text" class="form-control">
+            </div>
+            <div>
+                <label for="selectedDomain">Domain</label>
+                <select class="form-control" name="" id="selectedDomain">
+                    <option value="www.solarwinds.com" selected>www.solarwinds.com</option>
+                    <option value="www.dameware.com">www.dameware.com</option>
+                    <option value="www.webhelpdesk.com">www.webhelpdesk.com</option>
+                    <option value="www.serv-u.com">www.serv-u.com</option>
+                    <option value="www.appoptics.com">www.appoptics.com</option>
+                    <option value="try.solarwinds.com">try.solarwinds.com</option>
+                </select>
+            </div>
+            <div class="old-urls-section">
+                <label for="">Old URLs <span id="old-errors"></span> </label>
+                <textarea name="" id="oldurls" cols="30" rows="10" class="form-control" placeholder="Old URLs"></textarea>
+            </div>
+            <div class="new-urls-section">
+                <label for="">New URLs</label>
+                <textarea name="" id="newurls" cols="30" rows="10" class="form-control" placeholder="New URLs"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row config">
+        <div class="col-sm-4"><p id="">Host: <span id="host">TBD</span></p></div>
+        <div class="col-sm-4"><label class="checkbox">
+            <input id="301" type="checkbox" value="" checked> 301 (Permanent)
+        </label></div>
+        <div class="col-sm-4"><label class="checkbox">
+            <input id="copy_query" type="checkbox" value="" checked> Copy Query String
+        </label></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div style="overflow-x:auto" class="result">
+                <table id="result-table" class="table table-section">
+                    <tr><th>Status</th><th>From (<span id="old-number">0</span>)</th><th>To (<span id="new-number">0</span>)</th><th>Keep Host</th><tr></tr>
+                </table>
+            </div>
+        </div>
+        <!--<button id="button-test" class="form-control">
+            Test
+        </button>-->
+        <div id="table-test">
+
+        </div>
+    </div>
+</div>

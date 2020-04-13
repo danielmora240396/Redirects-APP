@@ -1,4 +1,12 @@
 var solarwinds = ['/de/', '/es/', '/pt/', '/fr/', '/ja/', '/ko/', '/zh/'];
+var policies = [
+    {domain: "www.solarwinds.com", policy_english: "ER_SolarWinds2", policy_loc: "ER_SolarWinds3"},
+    {domain: "www.dameware.com", policy_english: "ER_Brandsites", policy_loc: "N/A"},
+    {domain: "www.webhelpdesk.com", policy_english: "ER_WebHelpDesk", policy_loc: "N/A"},
+    {domain: "www.serv-u.com", policy_english: "ER_Servu", policy_loc: "N/A"},
+    {domain: "www.appoptics.com", policy_english: "ER_AppOptics", policy_loc: "N/A"}
+];
+
 var dameware = ['/de/'];
 var supported_hosts = ["www.solarwinds.com", "www.dameware.com", "www.webhelpdesk.com", "www.kiwisyslog.com", "www.serv-u.com", "www.appoptics.com"];
 var ER_solarwinds3 = ['www.solarwinds.com/resources', 'www.solarwinds.com/free-tools', 'www.solarwinds.com/sedemo'];
@@ -24,6 +32,7 @@ var english_content = "# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     "# Last Update: Tue Jun 18 15:11:35 GMT 2019,,,,,,,,,,,\n" +
     "# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -,,,,,,,,,,,\n" +
     "ruleName,matchURL,scheme,host,path,query,disabled,result.useIncomingQueryString,result.useIncomingSchemeAndHost,result.useRelativeUrl,result.redirectURL,result.statusCode\n";
+
 
 function relative_url_bool(index) {
     if ($("#"+index).is(":checked")) {
@@ -66,6 +75,8 @@ function download_file(filename, text){
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
+    populate_final_table();
+                
 }
 
 function clear(){
@@ -75,11 +86,10 @@ function clear(){
     $("#old-errors").html("");
     var data = "<tr><th>Status</th><th>From (<span id='old-number'>0</span>)</th><th>To (<span id='new-number'>0</span>)</th><th>Keep Host</th><tr></tr>\n";
     $("#result-table").html(data);
-    $("#host").text("TBD");
+    $("#host").text("www.solarwinds.com");
     disabled_button();
+    $("#selectedDomain").val("www.solarwinds.com");
 }
-
-
 
 function get_old_urls(){
     return $("#oldurls").val().trim().split("\n");
@@ -96,7 +106,7 @@ function format_old(){
         new_urls += remove_https(urls[i].trim()) + "\n";
     }
     $("#oldurls").val(new_urls.trim());
-    $("#host").text(get_host(get_old_urls()[0]));
+    //$("#host").text(get_host(get_old_urls()[0]));
     if(!validate_host()){
         $("#old-errors").html("<img src='img/close.png' alt='warning'> Multiple hosts have been identified");
     } else {
@@ -133,7 +143,6 @@ function remove_host(url){
 
     return new_url;
 }
-
 
 function remove_https(url){
     var new_url = "";
@@ -314,7 +323,7 @@ function unique_domain(){
     }
 
     if (!flag) {
-        $("#old-errors").html("<img src='img/close.png' alt='warning'> Please select one of the supported hosts");
+        $("#old-errors").html("<img src='img/close.png' alt='warning'>Please select one of the supported hosts/Multiple hosts identified");
     } else {
         $("#old-errors").html("<img src='img/correct.png' alt='correct'>");
     }
@@ -346,6 +355,185 @@ function duplicated_redirects(){
     }
 }
 
+function populate_final_table(){
+    $.ajax({url: "outcome-table.html", success: function(result){
+        var my_old = get_old_urls();
+        var my_new =  get_new_urls();
+        var desc = $("#ticketnumber").val();
+        var protocol = "https://"
+        var host = $("#host").text();
+        var wo_ticket = "Hi WebOps, could you please sync the following policies and versions to Akamai Staging\n\n"+
+        "• policy1 v. ##\n" +
+        "• policy2 v. ##\n\n"+
+        "Thank you!";
+        $("#main-div").html(result);
+        var data = "<tr><th>From</th><th>To</th></tr>";
+                
+        for (let i = 0; i < my_old.length; i++) {
+            data+="<tr><td><a target='_blank' href='"+protocol+my_old[i]+"'>"+protocol+my_old[i]+"</a></td><td><a target='_blank' href='"+protocol+host+my_new[i]+"'>"+protocol+host+my_new[i]+"</a></td></tr>\n";
+        }
+        for (let i = 0; i < policies.length; i++) {
+                if (policies[i].domain === host) {
+                    wo_ticket = wo_ticket.replace("policy1", policies[i].policy_english);
+                    if (host === "www.solarwinds.com") {
+                        wo_ticket = wo_ticket.replace("policy2", policies[i].policy_loc);
+                    } else {
+                        wo_ticket = wo_ticket.replace("policy2", "");
+                    }
+                    break;
+                }
+            }
+         
+        $("#final-table").html(data);
+        $("#webops-ticket").val(wo_ticket);
+        
 
+        $("#webops_rd").click(function(){
+            for (let i = 0; i < policies.length; i++) {
+                if (policies[i].domain === host) {
+                    wo_ticket = wo_ticket.replace("policy1", policies[i].policy_english);
+                    if (host === "www.solarwinds.com") {
+                        wo_ticket = wo_ticket.replace("policy2", policies[i].policy_loc);
+                    } else {
+                        wo_ticket = wo_ticket.replace("policy2", "");
+                    }
+                    break;
+                }
+            }
+            $("#webops-ticket").val(wo_ticket);
+        });
+
+        $("#urla").click(function(){
+            var data = "";
+            for (let i = 0; i < my_old.length; i++) {
+                data+=protocol+host+my_old[i]+"\n";
+            }
+            $("#webops-ticket").val(data.trim());
+        });
+
+        $("#urlb").click(function(){
+            var data = "";
+            for (let i = 0; i < my_new.length; i++) {
+                data+=protocol+host+my_new[i]+"\n";
+            }
+            $("#webops-ticket").val(data.trim());
+            
+        });
+
+        $("#home").click(function(){
+            load_main(true, desc, my_old, my_new, host);
+        });
+        
+    }});
+}
+
+function load_main(flag, desc="", oldurls="", newurls="", host="www.solarwinds.com"){
+    $.ajax({url: "main.html", success: function(result){
+        $("#main-div").html(result);
+        var urlsa = "";
+        var urlsb = "";
+        if (flag) {
+            for (let i = 0; i < oldurls.length; i++) {
+                urlsa += oldurls[i]+"\n";
+                urlsb += newurls[i]+"\n";
+            }
+            $("#ticketnumber").val(desc);
+            $("#oldurls").val(urlsa);
+            $("#newurls").val(urlsb);
+            format_old();
+            format_new();
+            enable_button();
+            unique_domain();
+            duplicated_redirects();
+            $("#selectedDomain").val(host);
+
+        }
+        
+        $("#host").text($("#selectedDomain").val());
+        $("#description-tab").click(function(){
+            $("#description-tab").addClass("custom-active-tab");
+            $("#new-tab").removeClass("custom-active-tab");
+            $("#old-tab").removeClass("custom-active-tab");
+            $("#ticketnumber").focus();
+        });
+    
+        $("#old-tab").click(function(){
+            $("#description-tab").removeClass("custom-active-tab");
+            $("#new-tab").removeClass("custom-active-tab");
+            $("#old-tab").addClass("custom-active-tab");
+            $("#oldurls").focus();
+        });
+    
+        $("#new-tab").click(function(){
+            $("#description-tab").removeClass("custom-active-tab");
+            $("#new-tab").addClass("custom-active-tab");
+            $("#old-tab").removeClass("custom-active-tab");
+            $("#newurls").focus();
+        });
+    
+        $("#ticketnumber").click(function(){
+            $("#description-tab").addClass("custom-active-tab");
+            $("#new-tab").removeClass("custom-active-tab");
+            $("#old-tab").removeClass("custom-active-tab");
+        })
+    
+        $("#oldurls").click(function(){
+            $("#description-tab").removeClass("custom-active-tab");
+            $("#new-tab").removeClass("custom-active-tab");
+            $("#old-tab").addClass("custom-active-tab");
+    
+        })
+    
+        $("#newurls").click(function(){
+            $("#description-tab").removeClass("custom-active-tab");
+            $("#new-tab").addClass("custom-active-tab");
+            $("#old-tab").removeClass("custom-active-tab");
+        })
+    
+        $("#ticketnumber").change(function(){
+            $("#ticketnumber").val($("#ticketnumber").val().trim());
+            enable_button();
+        })
+    
+        $("#oldurls").on('input', function(){
+           format_old();
+           format_new();
+           duplicated_redirects();
+           enable_button();
+           unique_domain();
+
+        });
+    
+        $("#newurls").on('input', function(){
+            format_new();
+            format_old();
+            enable_button();
+            unique_domain();
+            duplicated_redirects();
+         });
+    
+        $("#clear-btn").click(function(){
+            clear();
+        });
+    
+        $("#generate_btn").click(function(){
+            generate_content();
+        });
+    
+        $("#selectedDomain").change(function(){
+            $("#host").text($("#selectedDomain").val());
+            if ($("#oldurls").val() != "") {
+                unique_domain();
+            }
+            
+        });
+    
+        /*$("#button-test").click(function(){
+
+            populate_final_table();
+        });*/
+
+    }});
+}
 
 
