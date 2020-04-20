@@ -406,7 +406,7 @@ function populate_final_table(){
         $("#urla").click(function(){
             var data = "";
             for (let i = 0; i < my_old.length; i++) {
-                data+=protocol+host+my_old[i]+"\n";
+                data += protocol + my_old[i]+"\n";
             }
             $("#webops-ticket").val(data.trim());
         });
@@ -448,7 +448,19 @@ function load_main(flag, desc="", oldurls="", newurls="", host="www.solarwinds.c
             $("#selectedDomain").val(host);
 
         }
+        /*if ($(".custom-tabs div:first-child").hasClass("custom-tab")) {
+            var test = "test";
+        }
+
+        switch (test) {
+            case "test":
+                alert("test");
+                break;
         
+            default:
+                alert("no test");
+                break;
+        }*/
         $("#host").text($("#selectedDomain").val());
         $("#description-tab").click(function(){
             $("#description-tab").addClass("custom-active-tab");
