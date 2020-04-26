@@ -233,6 +233,10 @@ function validate_language(urla, urlb){
         }
     }
 
+    if (urlb === remove_host(urla)) {
+        outcome = "close";
+    }
+
     return outcome;
 
 }
@@ -354,6 +358,7 @@ function duplicated_redirects(){
         $("#old-errors").html("<img src='img/correct.png' alt='correct'>");
     }
 }
+
 
 function populate_final_table(){
     $.ajax({url: "outcome-table.html", success: function(result){
