@@ -1,0 +1,100 @@
+.light-body  {
+    background-color: white !important;
+    color: black !important;
+}
+
+.light-breadcrumbs {
+    color: black !important;
+}
+
+.light-form-control {
+    color: black;
+    background-color: white;
+}
+
+.light-form-control:focus {
+    color: black;
+    background-color: white;
+}
+
+.light-even-tab {
+    background-color: #e1e1e1 !important;
+    color: black;
+}
+
+.light-table {
+    color: black !important;
+}
+
+.light-table-default-row {
+    background-color: white !important;
+}
+
+.light-table-even-row {
+    background-color: #e1e1e1 !important;
+}
+
+.light-final-table {
+    color: black !important;
+    background-color: white;
+}
+
+.light-final-table-even-row {
+    background-color: #e1e1e1 !important;
+}
+
+.light-final-table-links {
+    color: black !important;
+}
+
+.light-wo-ticket {
+    background-color: white;
+    color: black;
+}
+
+.light-custom-header {
+    background-color: #e1e1e1;
+}
+
+.light-footer {
+    background-color: #e1e1e1;
+}
+
+.wo-ticket-light {
+    background-color: white;
+    color: black;
+}
+
+
+.wo-ticket {
+    background-color: black;
+    color: white;
+}
+
+.breadcrumbs-light p {
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.breadcrumbs-light p:hover {
+    cursor: pointer;
+}
+
+.breadcrumbs-light #home:first-child {
+    float: left;
+    margin-right: 7px;
+}
+
+.breadcrumbs-light {
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+    padding-top: 10px;
+}
+
+
+
+
+
+

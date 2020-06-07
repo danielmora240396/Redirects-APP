@@ -7,7 +7,7 @@ var policies = [
     {domain: "www.appoptics.com", policy_english: "ER_AppOptics", policy_loc: "N/A"}
 ];
 
-var dameware = ['/de/'];
+var dameware = ['/de/','/fr/','/ja/','/zh/'];
 var supported_hosts = ["www.solarwinds.com", "www.dameware.com", "www.webhelpdesk.com", "www.kiwisyslog.com", "www.serv-u.com", "www.appoptics.com"];
 var ER_solarwinds3 = ['www.solarwinds.com/resources', 'www.solarwinds.com/free-tools', 'www.solarwinds.com/sedemo'];
 var english_content = "# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -,,,,,,,,,,,\n" + 
@@ -75,7 +75,7 @@ function download_file(filename, text){
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
-    populate_final_table();
+    
                 
 }
 
@@ -308,9 +308,13 @@ function generate_content(){
             urlsb[i] + ',' + permanent_redirect() + '\n';
         }
     }
-
     download_file(description + "_English.csv", english);
     download_file(description+"_Localized.csv", localized);
+    if (sessionStorage.getItem('theme') == 'light') {
+        populate_final_table('outcome-table-light.html');
+    } else {
+        populate_final_table('outcome-table.html');
+    }
 
 }
 
@@ -360,8 +364,8 @@ function duplicated_redirects(){
 }
 
 
-function populate_final_table(){
-    $.ajax({url: "outcome-table.html", success: function(result){
+function populate_final_table(table){
+    $.ajax({url: table, success: function(result){
         var my_old = get_old_urls();
         var my_new =  get_new_urls();
         var desc = $("#ticketnumber").val();
@@ -375,7 +379,7 @@ function populate_final_table(){
         var data = "<tr><th>From</th><th>To</th></tr>";
                 
         for (let i = 0; i < my_old.length; i++) {
-            data+="<tr><td><a target='_blank' href='"+protocol+my_old[i]+"'>"+protocol+my_old[i]+"</a></td><td><a target='_blank' href='"+protocol+host+my_new[i]+"'>"+protocol+host+my_new[i]+"</a></td></tr>\n";
+            data+="<tr><td><a class='final-table-links' target='_blank' href='"+protocol+my_old[i]+"'>"+protocol+my_old[i]+"</a></td><td><a class='final-table-links' target='_blank' href='"+protocol+host+my_new[i]+"'>"+protocol+host+my_new[i]+"</a></td></tr>\n";
         }
         for (let i = 0; i < policies.length; i++) {
                 if (policies[i].domain === host) {
@@ -518,7 +522,7 @@ function load_main(flag, desc="", oldurls="", newurls="", host="www.solarwinds.c
            duplicated_redirects();
            enable_button();
            unique_domain();
-
+            set_theme();
         });
     
         $("#newurls").on('input', function(){
@@ -527,6 +531,7 @@ function load_main(flag, desc="", oldurls="", newurls="", host="www.solarwinds.c
             enable_button();
             unique_domain();
             duplicated_redirects();
+            set_theme();
          });
     
         $("#clear-btn").click(function(){
@@ -535,6 +540,13 @@ function load_main(flag, desc="", oldurls="", newurls="", host="www.solarwinds.c
     
         $("#generate_btn").click(function(){
             generate_content();
+            /*if ($("#check-theme").is(":checked")) {
+                $("#check-theme").prop('checked', false);
+                $("#check-theme").prop('checked', true);
+            } else {
+                $("#check-theme").prop('checked', true);
+                $("#check-theme").prop('checked', false)
+            }*/
         });
     
         $("#selectedDomain").change(function(){
@@ -544,12 +556,56 @@ function load_main(flag, desc="", oldurls="", newurls="", host="www.solarwinds.c
             }
             
         });
-    
-        /*$("#button-test").click(function(){
 
-            populate_final_table();
-        });*/
+        $("#check-theme").click(function(){
+            if ($("#check-theme").is(":checked")) {
+                sessionStorage.setItem('theme', 'light');
+            } else {
+                sessionStorage.setItem('theme', 'dark');
+            }
+            set_theme();
+        });
 
+        function set_theme(){
+            if (sessionStorage.getItem('theme') == 'light') {
+                $("body").addClass('light-body');
+                $(".breadcrumbs p").addClass('light-breadcrumbs');
+                $("#main-div .form-control").addClass("light-form-control");
+                $(".custom-tabs > .custom-tab:nth-child(even)").addClass('light-even-tab');
+                $('.table-section').addClass('light-table');
+                $('.table-section > tr').addClass('light-table-default-row');
+                $('.table-section > tr:nth-child(even)').addClass('light-table-default-row');
+                $('.custom-header').addClass('light-custom-header');
+                $('.footer').addClass('light-footer');
+                $('.final-table').addClass('light-final-table');
+                $('.final-table a').addClass('light-final-table-links');
+                $('#webops-ticket').addClass('wo-ticket-light');
+                $('#webops-ticket').removeClass('wo-ticket');
+                $("#breadcrumbs-section").removeClass('breadcrumbs');
+                $("#breadcrumbs-section").addClass('breadcrumbs-light');
+            } else {
+                $("body").removeClass('light-body');
+                $(".breadcrumbs p").removeClass('light-breadcrumbs');
+                $("#main-div .form-control").removeClass("light-form-control");
+                $(".custom-tabs > .custom-tab:nth-child(even)").removeClass('light-even-tab');
+                $('.table-section').removeClass('light-table');
+                $('.table-section > tr').removeClass('light-table-default-row');
+                $('.table-section > tr:nth-child(even)').removeClass('light-table-even-row');
+                $('.custom-header').removeClass('light-custom-header');
+                $('.footer').removeClass('light-footer');
+                $('.final-table').removeClass('light-final-table');
+                $('.final-table a').removeClass('light-final-table-links');
+                $('.final-table').removeClass('light-final-table');
+                $('.final-table a').removeClass('light-final-table-links');
+                $('.final-table a').addClass('final-table-links');
+                $('#webops-ticket').removeClass('wo-ticket-light');
+                $('#webops-ticket').addClass('wo-ticket');
+                $("#breadcrumbs-section").addClass('breadcrumbs');
+                $("#breadcrumbs-section").removeClass('breadcrumbs-light');
+            }
+            
+        }
+        set_theme();
     }});
 }
 

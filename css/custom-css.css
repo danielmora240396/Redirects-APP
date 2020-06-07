@@ -120,8 +120,8 @@ button.form-control:disabled {
     z-index: 1;
   }
 
-  .table {
-      color: white;
+  .table-section {
+      color: white !important;
       font-size: 13px;
   }
 
@@ -129,8 +129,8 @@ button.form-control:disabled {
       text-align: center !important;
   }
 
-  .table > tr > td:nth-child(4),
-  .table > tr > td:nth-child(1){
+  .table-section > tr > td:nth-child(4),
+  .table-section > tr > td:nth-child(1){
       text-align: center;
   }
 
@@ -138,13 +138,13 @@ button.form-control:disabled {
       height: 20px;
   }
 
-  .table > tr > td:nth-child(1), td:nth-child(2), td:nth-child(3) {
+  .table-section > tr > td:nth-child(1), td:nth-child(2), td:nth-child(3) {
     border-right: solid;
     border-right-width: 1px ;
   }
 
 
-  .table > tr:nth-child(even){
+  .table-section > tr:nth-child(even){
       background-color: #28292D;
   }
 
@@ -165,17 +165,24 @@ button.form-control:disabled {
     text-align: center;
   }
 
-  #final-table {
+  .final-table {
       margin-top: 30px;
+      color: white !important;
   }
 
-  #final-table td {
+  .final-table td {
     text-align: left;
     font-size: 12px;
 }
 
-#final-table a {
-    color: white;
+.final-table .final-table-links {
+    color: white !important;
+    font-weight: 700;
+
+}
+
+.light-final-table .final-table-links {
+    color: black !important;
     font-weight: 700;
 
 }
