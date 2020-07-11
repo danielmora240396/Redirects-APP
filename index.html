@@ -2,45 +2,128 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/custom-css.css">
-    <link rel="stylesheet" href="css/light-theme.css">
-    <script type="text/javascript" src="js/dist/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/events.js"></script>
-    <script type="text/javascript" src="js/functions.js"></script>
-    <script type="text/javascript" src="js/Angular.js"></script>
+    <link rel="stylesheet" href="css/mycss.css">
+    <link rel="stylesheet" href="css/mycss-dark.css">
+    <script src="js/dist/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/event.js"></script>
+    <script src="js/function.js"></script>
+    <script src="js/errors.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="icon" href="img/icon.png">
     <title>Redirects Files Generator | SolarWinds | Akamai</title>
 </head>
-<body>
-<div class="custom-header fluid-container">
+<body class="light">
+<div class="fluid-container header">
     <div class="container">
-        <div class="img-logo">
-        <img src="img/1200px-Akamai_logo.svg.png" alt="Akamai Logo">
+        <div class="img-container">
+            <img src="img/1200px-Akamai_logo.svg.png" alt="">
         </div>
     </div>
 </div>
-<div class="container">
-    <div style="padding-top: 10px;">
-        <input type="checkbox" name="" id="check-theme">
-        <label for="check-theme">Light Theme</label>
+<div class="container" id="main-div">
+    <div class="row">
+        <div class="col-sm-3 navigation-section">
+            <div class="fixedElement">
+                <div>
+                    <ul>
+                        <li id="list-description">Description</li>
+                        <li id="list-urlsa">URLs A</li>
+                        <li id="list-urlsb">URLs B</li>
+                    </ul>
+                </div>
+                <div class="buttons-section">
+                    <div style="padding-bottom: 10px;">
+                        <input class="form-control primary-btn" type="button" value="Generate" disabled>
+                    </div>
+                    <div>
+                        <input class="form-control primary-btn" type="button" value="Clear">
+                    </div>
+                    
+                </div>
+                <div style="padding-left: 15px; text-align: center;">
+                    <label class="switch">
+                        <input id="theme" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>     
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="row">
+                <div class="col-sm-6">
+                    <strong><label for="description">Description</label></strong>
+                    <input placeholder="Description" class="form-control" id="description" type="text">
+                </div>
+                <div class="col-sm-6">
+                    <strong><label for="drop-host">Host</label></strong>
+                    <select class="form-control" name="" id="drop-host"></select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="label-container">
+                        <label for="urlsa">From</label>
+                    </div>
+                    <textarea placeholder="From" id="urlsa" class="form-control" name="" id="" cols="60" rows="10"></textarea>
+                </div>
+                <div class="col-sm-12">
+                    <div class="label-container">
+                        <label for="urlsb">To</label>
+                    </div>
+                    <textarea placeholder="To" id="urlsb" class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<div id="main-div">
-    
+    <div class="row checkbox">
+        <div class="col-sm-4">
+            <p id="">Host: <span id="host">TBD</span></p>
+        </div>
+        <div class="col-sm-4">
+            <label class="checkbox">
+                <input id="301" type="checkbox" value="" checked> 301 (Permanent)
+            </label>
+        </div>
+        <div class="col-sm-4">
+            <label class="checkbox">
+                <input id="copy_query" type="checkbox" value="" checked> Copy Query String
+            </label>
+        </div>
+    </div>
+    <div class="row textareas">
+        
+        <div class="col-sm-6">
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <p id="error-section"></p>
+            <div style="overflow-x:auto" class="result">
+               <table id="result" class="table table-striped">
+                   
+               </table>
+            </div>
+        </div>
+    </div>
+
 </div>
 <div class="container-fluid footer">
     <div class="container">
         <div class="row">
+            <div class="col-sm-4">
+                <a target="_blank" href="https://www.linkedin.com/in/daniel-alonso-mora-ulloa-86157a68/"><img src="img/social-linkedin-circle-512.webp" width="10%" alt=""></a>
+            </div>
             <div class="col-sm-4"></div>
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4 footer-img">
+            <div style="text-align: right;" class="col-sm-4 footer-img">
                 <img src="img/bb-8.png" alt="">
             </div>
         </div>
-    </div>
         
+    </div>
+   
+</div>
 </div>
 </body>
 </html>
