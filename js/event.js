@@ -4,6 +4,13 @@ $(document).ready(function(){
     $("#description").focus();
     $("#list-description").addClass("active-tab");
 
+
+
+    $("#description").on('input', function(){
+      ready_to_generate();
+    });
+
+
     $("#drop-host").change(function(){
       set_host();
       if ($("#urlsa").val() != "") {
@@ -16,6 +23,7 @@ $(document).ready(function(){
         format_old();
         validations();
         clean_table();
+        ready_to_generate();
       }
         
         
@@ -26,6 +34,7 @@ $(document).ready(function(){
         format_new();
         validations();
         clean_table();
+        ready_to_generate();
       }
     });
 
@@ -59,6 +68,14 @@ $(document).ready(function(){
       $("#list-description").removeClass("active-tab");
       $("#list-urlsa").removeClass("active-tab");
       $("#list-urlsb").addClass("active-tab");
+    });
+
+    $("#clean-btn").on('click', function(){
+      clean();
+    });
+
+    $("#generate-btn").on("click", function(){
+      generate_content();
     });
 
 });

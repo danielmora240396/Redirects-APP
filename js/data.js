@@ -33,3 +33,14 @@ var english_content = "# - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     "# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -,,,,,,,,,,,\n" +
     "ruleName,matchURL,scheme,host,path,query,disabled,result.useIncomingQueryString,result.useIncomingSchemeAndHost,result.useRelativeUrl,result.redirectURL,result.statusCode\n";
 
+function get_policy(domain){
+    let policy = "";
+    for (let i = 0; i < sites.length; i++) {
+        if (sites[i].site === domain) {
+            policy = sites[i].policy;
+            break;
+        }
+    }
+
+    return policy;
+}

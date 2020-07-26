@@ -249,3 +249,82 @@ function clean_table(){
         $("#result").html("<tr><th>From</th><th>To</th><th>Keep Host</th></tr>");
     }
 }
+
+function clean(){
+    $("#urlsa").val("");
+    $("#urlsb").val("");
+    $("#description").val("");
+    clean_table();
+}
+
+function ready_to_generate(){
+    if ($("#description").val() != "" &&
+        $("#urlsa").val() != "" &&
+        $("#urlsb").val() != "") {
+        $("#generate-btn").prop("disabled", false);
+    } else {
+        $("#generate-btn").prop("disabled", true);
+    }
+}
+
+function download_files(file, text){
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', file);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+}
+
+function is_loc(url){
+    let loc = false;
+    for (let i = 0; i < sites.length; i++) {
+        if (sites[i].lang.length > 1) {
+            for (let y = 0; y < sites[i].lang.length; y++) {
+                if (url.includes(sites[i].lang[y])) {
+                    loc = true;
+                    break;
+                }
+            }
+            break;
+        }
+    }
+    return loc;
+}
+
+function generate_content(){
+    let urlsa = get_urls("#urlsa");
+    let urlsb = get_urls("#urlsb");
+    let description = $("#description").val().trim();
+    let first_file = english_content;
+    let second_file = loc_content;
+    let policy = get_policy(get_domain());
+    
+
+    for (let i = 0; i < urlsa.length; i++) {
+        if (urlsa[i].includes("www.solarwinds.com")) {
+            if (!is_loc(urlsa[i])) {
+                first_file += description + ',' + urlsa[i] + ',,,,,,' + copy_query_string() + ',' + keep_host(i) + ',' + relative_url_bool(i) + ',' +
+                urlsb[i] + ',' + permanent_redirect() + '\n';
+            } else {
+                second_file += description + ',' + urlsa[i] + ',,,,,,' + copy_query_string() + ',' + keep_host(i) + ',' + relative_url_bool(i) + ',' +
+                urlsb[i] + ',' + permanent_redirect() + '\n';
+            }
+        } else {
+            first_file += description + ',' + urlsa[i] + ',,,,,,' + copy_query_string() + ',' + keep_host(i) + ',' + relative_url_bool(i) + ',' +
+            urlsb[i] + ',' + permanent_redirect() + '\n';
+        }
+    }
+
+    alert(first_file);
+    alert(second_file);
+
+   if (urlsa[0].includes("www.solarwinds.com")) {
+        download_files(description + " " + policy + ".csv", first_file);
+        download_files(description + " ER_Solarwinds3"+ ".csv", second_file);
+    } else {
+        download_files(description + " " + policy+ ".csv", first_file );
+    }
+
+}
