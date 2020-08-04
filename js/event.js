@@ -2,7 +2,16 @@ $(document).ready(function(){
     fill_dropdown();
     //$("#theme").prop("checked", true);
     $("#description").focus();
-    $("#list-description").addClass("active-tab");
+    $("#description").val("");
+    $("#urlsa").val("");
+    $("#urlsb").val("");
+    $("#generate-btn").prop("disabled", true);
+    if (localStorage.getItem('theme')==="dark") {
+        $("#theme").prop("checked", true);
+        $("body").addClass('dark');
+        $("body").removeClass('light');
+    }
+    //$("#list-description").addClass("active-tab");
 
 
 
@@ -43,9 +52,11 @@ $(document).ready(function(){
       if ($("#theme").is(':checked')) {
         $("body").addClass('dark');
         $("body").removeClass('light');
+        localStorage.setItem("theme", "dark");
       } else {
         $("body").removeClass('dark');
         $("body").addClass('light');
+        localStorage.setItem("theme", "light");
       }
     });
 
@@ -75,7 +86,72 @@ $(document).ready(function(){
     });
 
     $("#generate-btn").on("click", function(){
+      fill_table();
       generate_content();
+      get_urlsa();
+      get_urlsb();
+      get_webops_ticket();
+      fill_final_table();
+      $("#show-final-result-options").css("display", "block");
+     
     });
+
+
+    $(document).on("scroll", function(){
+      if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+        $(".header .img-container img").css("width", "5%");
+        //$(".light .header").css("background-color", "#a1a1a1");
+      } else {
+        $(".header .img-container img").css("width", "15%");
+        //$(".light .header").css("background-color", "#f1f1f1");
+      }
+    });
+
+    $("#show-final-result-options").on('change', function(){
+      let val = $("#show-final-result-options").val();
+      
+      switch (val) {
+        case "1":
+          $("#result").css("display", "inline-table");
+          $("#urlsa-result").css("display", "none");
+          $("#urlsb-result").css("display", "none");
+          $("#ticket-result").css("display", "none");
+          break;
+
+          case "2":
+          $("#result").css("display", "none");
+          $("#urlsa-result").css("display", "inline-table");
+          $("#urlsb-result").css("display", "inline-table");
+          $("#ticket-result").css("display", "none");
+          break;
+
+          case "3":
+          $("#result").css("display", "none");
+          $("#urlsa-result").css("display", "inline-table");
+          $("#urlsb-result").css("display", "inline-table");
+          $("#ticket-result").css("display", "none");
+          break;
+
+          case "4":
+          $("#result").css("display", "none");
+          $("#urlsa-result").css("display", "none");
+          $("#urlsb-result").css("display", "none");
+          $("#ticket-result").css("display", "block");
+          break;
+
+        default:
+          $("#result").css("display", "block");
+          $("#urlsa-result").css("display", "none");
+          $("#urlsb-result").css("display", "none");
+          $("#ticket-result").css("display", "none");
+          break;
+      }
+      
+    });
+
+
+    
+
+    
 
 });

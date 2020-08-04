@@ -16,11 +16,11 @@ function set_host(){
 }
 
 function get_domain(){
-    let urlsa = get_urls("#urlsa");
+    const urlsa = get_urls("#urlsa");
     return urlsa[0].slice(0, urlsa[0].indexOf('.com') + 4);
 }
 
-function get_urls(element){
+get_urls = (element) => {
     return $(element).val().trim().split('\n');
 }
 
@@ -29,7 +29,7 @@ function set_urls(){
 }
 
 function format_old(data){
-    let list = get_urls("#urlsa");
+    const list = get_urls("#urlsa");
     let newdata = "";
     for (let i = 0; i < list.length; i++) {
         newdata += remove_host(list[i] + "\n");
@@ -74,7 +74,7 @@ function validations() {
 }
 
 function valid_host(){
-    let urls= get_urls("#urlsa");
+    const urls= get_urls("#urlsa");
     let host = (urls[0].slice(0, urls[0].indexOf(".com") + 4));
     let passed = true;
 
@@ -92,7 +92,7 @@ function valid_host(){
 }
 
 function supported_host(){
-    let urls= get_urls("#urlsa");
+    const urls= get_urls("#urlsa");
     let host = (urls[0].slice(0, urls[0].indexOf(".com") + 4));
     let passed = true;
 
@@ -106,8 +106,8 @@ function supported_host(){
 }
 
 function format_new(){
-    let urlsa = get_urls("#urlsa");
-    let urlsb = get_urls("#urlsb");
+    const urlsa = get_urls("#urlsa");
+    const urlsb = get_urls("#urlsb");
     let newformat = "";
     for (let i = 0; i < urlsb.length; i++) {
         let host = urlsa[i].slice(0, urlsa[i].indexOf('.com') + 4);
@@ -121,8 +121,8 @@ function format_new(){
 }
 
 function urls_count() {
-    let urlsa = get_urls("#urlsa");
-    let urlsb = get_urls("#urlsb");
+    const urlsa = get_urls("#urlsa");
+    const urlsb = get_urls("#urlsb");
     let state = false;
 
     if (urlsa.length == urlsb.length) {
@@ -143,8 +143,8 @@ function language_validation_table(){
             break;
         }
     }
-    let urlsa = get_urls("#urlsa");
-    let urlsb = get_urls("#urlsb");
+    const urlsa = get_urls("#urlsa");
+    const urlsb = get_urls("#urlsb");
     for (let i = 0; i < urlsa.length; i++) {
         for (let j = 0; j < languages.length; j++) {
             if (urlsa[i].indexOf(languages[j]) > -1 && urlsb[i].indexOf(languages[j]) == -1 ||
@@ -159,8 +159,8 @@ function language_validation_table(){
 }
 
 function fill_table(){
-    let urlsa = get_urls("#urlsa");
-    let urlsb = get_urls("#urlsb");
+    const urlsa = get_urls("#urlsa");
+    const urlsb = get_urls("#urlsb");
     let data = "";
     $("#result").html("<tr><th>From</th><th>To</th><th>Keep Host</th></tr>");
 
@@ -170,6 +170,10 @@ function fill_table(){
     }
 
     $("#result").append(data);
+    $("a[href*='#result']").remove();
+    let element = "<li><a href='#result-anchor'>Result</a></li>";
+    $(".sticky-nav-links").append(element);
+
     let rows = language_validation_table();
     for (let i = 0; i < rows.length; i++) {
         if (rows[i] != "placeholder") {
@@ -186,6 +190,8 @@ function fill_table(){
         }
     }    
 
+    
+
 
 }
 
@@ -198,8 +204,8 @@ function is_relative(url){
 }
 
 function repeat_urls(){
-    let urlsa = get_urls("#urlsa");
-    let urlsb = get_urls("#urlsb");
+    const urlsa = get_urls("#urlsa");
+    const urlsb = get_urls("#urlsb");
     let rows = ["placehoder"];
 
     for (let i = 0; i < urlsa.length; i++) {
@@ -245,8 +251,10 @@ function keep_host(index){
 }
 
 function clean_table(){
-    if (get_urls("#urlsa").length == 0 || get_urls("#urlsb").length == 0) {
-        $("#result").html("<tr><th>From</th><th>To</th><th>Keep Host</th></tr>");
+    const urlsa = get_urls("#urlsa");
+    const urlsb = get_urls("#urlsb");
+    if (urlsa.length <= 1 && urlsb.length <= 1) {
+        $("#result").html("");
     }
 }
 
@@ -254,7 +262,14 @@ function clean(){
     $("#urlsa").val("");
     $("#urlsb").val("");
     $("#description").val("");
+    $("#generate-btn").prop("disabled", true);
+    $("a[href*='#result-anchor']").remove();
     clean_table();
+    $("textarea").css('height', '240px');
+    $("#show-final-result-options").val("1");
+    $("#show-final-result-options").css("display", "none");
+    $("#ticket-result").css("display", "none");
+    $("#generate-btn").css("background-color", "#f7958e");
 }
 
 function ready_to_generate(){
@@ -262,8 +277,11 @@ function ready_to_generate(){
         $("#urlsa").val() != "" &&
         $("#urlsb").val() != "") {
         $("#generate-btn").prop("disabled", false);
+        $("#generate-btn").css("background-color", "#07f813");
     } else {
         $("#generate-btn").prop("disabled", true);
+        $("#generate-btn").css("background-color", "#f7958e");
+        
     }
 }
 
@@ -275,6 +293,7 @@ function download_files(file, text){
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
+    
 }
 
 function is_loc(url){
@@ -315,10 +334,7 @@ function generate_content(){
             first_file += description + ',' + urlsa[i] + ',,,,,,' + copy_query_string() + ',' + keep_host(i) + ',' + relative_url_bool(i) + ',' +
             urlsb[i] + ',' + permanent_redirect() + '\n';
         }
-    }
-
-    alert(first_file);
-    alert(second_file);
+    }   
 
    if (urlsa[0].includes("www.solarwinds.com")) {
         download_files(description + " " + policy + ".csv", first_file);
@@ -327,4 +343,53 @@ function generate_content(){
         download_files(description + " " + policy+ ".csv", first_file );
     }
 
+}
+
+function fill_final_table(){
+    const urlsa = get_urls("#urlsa");
+    const urlsb = get_urls("#urlsb");
+    
+    let data = "";
+    $("#result").html("<tr><th>From</th><th>To</th></tr>");
+        for (let i = 0; i < urlsa.length; i++) {
+            data+="<tr><td><a class='final-table-links' target='_blank' href='"+"https://"+urlsa[i]+"'>"+"https://"+urlsa[i]+"</a></td><td><a class='final-table-links' target='_blank' href='"+"https://"+get_domain()+urlsb[i]+"'>"+"https://"+get_domain()+urlsb[i]+"</a></td></tr>\n";
+        }
+    $("#result").append(data);
+    
+}
+
+function get_urlsa() {
+    let data = "";
+    const a = get_urls("#urlsa");
+
+    $("#urlsa-result").html("<tr><th>URLs A</th></tr>");
+    for (let i = 0; i < a.length; i++) {
+        data+="<tr><td><a class='final-table-links' target='_blank' href='"+"https://"+a[i]+"'>"+"https://"+a[i]+"</a></td></tr>\n";
+    }
+
+    $("#urlsa-result").append(data);
+
+}
+
+function get_urlsb() {
+    let data = "";
+    const b = get_urls("#urlsb");
+
+    $("#urlsb-result").html("<tr><th>URLs B</th></tr>");
+    for (let i = 0; i < b.length; i++) {
+        data+="<tr><td><a class='final-table-links' target='_blank' href='"+"https://"+get_domain()+b[i]+"'>"+"https://"+get_domain()+b[i]+"</a></td></tr>\n";
+    }
+
+    $("#urlsb-result").append(data);
+
+}
+
+function get_webops_ticket(){
+    let data = "Hi WebOps, could you please sync the following policies and version to Akamai Staging\n\n<ul>"
+    let array = get_policies(get_domain());
+    for (let i = 0; i < array.length; i++) {
+        data+= "<li>"+array[i]+" v. #</li>";
+    }
+    data+="</ul>Thank you!!";
+    $("#ticket-result").html(data);
 }

@@ -1,26 +1,59 @@
+html {
+  scroll-behavior: smooth;
+}
+
+#ticket-anchor, #urlsa-anchor, #urlsb-anchor, #result-anchor {
+  scroll-margin-top: 140px;
+}
+
 .light .header {
     padding-top: 1rem;
-    padding-bottom: 1rem;
-    background-color: #e1e1e1e1;
-    color: white;
+    background-color: #f1f1f1;
     border-bottom: 5px groove #EFA13E;
+    position: sticky;
+    width: 100%;
+    z-index: 2;
+    top: 0;
+}
+
+.light .header ul {
+  list-style: none;
+  padding-left: 0px;
+  padding-top: 10px;
+}
+
+.light .header ul li {
+  float: left;
+  margin-right: 25px;
+}
+
+.light .header ul li a {
+  color: black;
+  text-decoration: none;
+}
+
+.light .header ul li:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 .light .footer {
     padding-top: 1rem;
     padding-bottom: 1rem;
-    background-color: #e1e1e1;
+    background-color: #f1f1f1;
     color: white;
     border-top: 5px groove #EFA13E;
+
 }
 
 .light .header .img-container img {
     width: 15%;
+    transition: 0.2s;
 }
 
 .light #main-div {
     padding-bottom: 30px;
-    padding-top: 20px;;
+    padding-top: 20px;
 }
 
 .light #main-div div.row:nth-child(2) label {
@@ -28,9 +61,6 @@
 }
 
 .light #main-div div.row:first-child {
-    border-bottom-style: dotted;
-    border-width: 2px;
-    border-color: #e1e1e1;
     padding-bottom: 15px;
     margin-bottom: 10px;
 }
@@ -127,6 +157,10 @@
     -ms-transform: translateX(26px);
     transform: translateX(26px);
   }
+
+  input.form-control, textarea.form-control {
+    margin-bottom: 15px;
+  }
   
   /* Rounded sliders */
   .slider.round {
@@ -177,16 +211,29 @@
 
   #generate-btn:disabled {
     cursor: not-allowed;
+    background-color: #f7958e;
   }
 
-  @media only screen and (min-width: 600px) {
-  .light .fixedElement {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 30px;
-    z-index: 1;
-    border-right: 5px groove #EFA13E;
-    padding-right: 0px;
-    height: 300px;
+  input[type="checkbox"] {
+    cursor: pointer;
   }
+  
+  label {
+    cursor: pointer;
+  }
+
+  @media only screen and (max-width: 600px) {
+
+    #sticky-nav {
+      display: none;
+    }
+
+    .header {
+      padding-bottom: 20px;
+    }
+
+}
+
+#show-final-result-options {
+  width: 25%;
 }

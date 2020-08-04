@@ -44,3 +44,20 @@ function get_policy(domain){
 
     return policy;
 }
+
+function get_policies(domain){
+    let policy = [];
+    for (let i = 0; i < sites.length; i++) {
+        if (sites[i].site === domain) {
+            if (sites[i].policy != sites[i].policy_loc) {
+                policy[0] = sites[i].policy;
+                policy[1] = sites[i].policy_loc;
+            } else {
+                policy[0] = sites[i].policy;
+            }
+            break;
+        }
+    }
+
+    return policy;
+}

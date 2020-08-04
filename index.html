@@ -14,61 +14,68 @@
     <title>Redirects Files Generator | SolarWinds | Akamai</title>
 </head>
 <body class="light">
-<div class="fluid-container header">
+    <div class="fluid-container header">
     <div class="container">
         <div class="img-container">
             <img src="img/1200px-Akamai_logo.svg.png" alt="">
         </div>
     </div>
+    <div id="sticky-nav" class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <ul class="sticky-nav-links">
+                    <li><a href="#ticket-anchor">Description</a></li>
+                    <li><a href="#urlsa-anchor">URLs A</a></li>
+                    <li><a href="#urlsb-anchor">URLs B</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-2">
+                <input id="generate-btn" class="form-control primary-btn" type="button" value="Generate" disabled>
+            </div>
+            <div class="col-sm-2">
+                <input id="clean-btn" class="form-control primary-btn" type="button" value="Clear">
+            </div>
+        </div>
+    </div>
 </div>
 <div class="container" id="main-div">
     <div class="row">
-        <div class="col-sm-3 navigation-section">
-            <div class="fixedElement">
-                <div>
-                    <ul>
-                        <li id="list-description">Description</li>
-                        <li id="list-urlsa">URLs A</li>
-                        <li id="list-urlsb">URLs B</li>
-                    </ul>
-                </div>
-                <div class="buttons-section">
-                    <div style="padding-bottom: 10px;">
-                        <input id="generate-btn" class="form-control primary-btn" type="button" value="Generate" disabled>
-                    </div>
-                    <div>
-                        <input id="clean-btn" class="form-control primary-btn" type="button" value="Clear">
-                    </div>
-                    
-                </div>
-                <div style="padding-left: 15px; text-align: center;">
-                    <label class="switch">
-                        <input id="theme" type="checkbox">
-                        <span class="slider round"></span>
-                    </label>     
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-9">
-            <div class="row">
-                <div class="col-sm-6">
+        <div class="col-sm-3">
+           
+            <div id="" class="row">
+                <div class="col-sm-12">
+                    <a id="ticket-anchor" href="#"></a>
                     <strong><label for="description">Description</label></strong>
                     <input placeholder="Description" class="form-control" id="description" type="text">
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <strong><label for="drop-host">Host</label></strong>
                     <select class="form-control" name="" id="drop-host"></select>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12">
+            <div style="text-align: center;">
+                <label class="switch">
+                    <input id="theme" type="checkbox">
+                    <span class="slider round"></span>
+                </label>  
+                <p id="error-section"></p>
+            </div>
+            
+        </div>
+        <div class="col-sm-9">
+           
+            <div class="row">    
+                <div class="col-sm-12">  
                     <div class="label-container">
+                        <a id="urlsa-anchor" href="#"></a>
                         <label for="urlsa">From</label>
                     </div>
                     <textarea placeholder="From" id="urlsa" class="form-control" name="" id="" cols="60" rows="10"></textarea>
                 </div>
+                
                 <div class="col-sm-12">
                     <div class="label-container">
+                        <a id="urlsb-anchor" href="#"></a>
                         <label for="urlsb">To</label>
                     </div>
                     <textarea placeholder="To" id="urlsb" class="form-control" name="" id="" cols="30" rows="10"></textarea>
@@ -76,6 +83,7 @@
             </div>
         </div>
     </div>
+    <a id="result-anchor" href="#"></a>
     <div class="row checkbox">
         <div class="col-sm-4">
             <p id="">Host: <span id="host">TBD</span></p>
@@ -91,19 +99,22 @@
             </label>
         </div>
     </div>
-    <div class="row textareas">
-        
-        <div class="col-sm-6">
-            
-        </div>
-    </div>
+
     <div class="row">
         <div class="col-sm-12">
-            <p id="error-section"></p>
+            <select style="display: none;" id="show-final-result-options" class="form-control" name="" id="" aria-placeholder="test">
+                <option value="1" selected>URLs Table</option>
+                <option value="4">WebOps ticket</option>
+            </select>
+        </div>
+        <div class="col-sm-12">
             <div style="overflow-x:auto" class="result">
                <table id="result" class="table table-striped">
                    
                </table>
+               <p style="display: none;" id="ticket-result">
+
+               </p>  
             </div>
         </div>
     </div>
@@ -122,7 +133,6 @@
         </div>
         
     </div>
-   
 </div>
 </div>
 </body>
