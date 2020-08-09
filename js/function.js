@@ -146,10 +146,12 @@ function language_validation_table(){
     const urlsa = get_urls("#urlsa");
     const urlsb = get_urls("#urlsb");
     for (let i = 0; i < urlsa.length; i++) {
-        for (let j = 0; j < languages.length; j++) {
-            if (urlsa[i].indexOf(languages[j]) > -1 && urlsb[i].indexOf(languages[j]) == -1 ||
-                urlsb[i].indexOf(languages[j]) > -1 && urlsa[i].indexOf(languages[j]) == -1) {
-                rows.push(i);
+        if (urlsb[i].indexOf("/") === 0) {
+            for (let j = 0; j < languages.length; j++) {
+                if (urlsa[i].indexOf(languages[j]) > -1 && urlsb[i].indexOf(languages[j]) == -1 ||
+                    urlsb[i].indexOf(languages[j]) > -1 && urlsa[i].indexOf(languages[j]) == -1) {
+                    rows.push(i);
+                }
             }
         }
     }
@@ -269,7 +271,10 @@ function clean(){
     $("#show-final-result-options").val("1");
     $("#show-final-result-options").css("display", "none");
     $("#ticket-result").css("display", "none");
+    $("#ticket-comment").css("display", "none");
     $("#generate-btn").css("background-color", "#f7958e");
+    $("#error-section").html("");
+    
 }
 
 function ready_to_generate(){
@@ -392,4 +397,36 @@ function get_webops_ticket(){
     }
     data+="</ul>Thank you!!";
     $("#ticket-result").html(data);
+}
+
+function get_wu_ticket(){
+    const urlsa = get_urls("#urlsa");
+    const urlsb = get_urls("#urlsb");
+    let urls = "";
+    let notes = "";
+    let policies_text = "";
+    let policies = get_policies(get_domain());
+    if (policies.length === 1) {
+        policies_text = "* " + policies[0];
+    } else {
+        policies_text = "* " + policies[0] + "<br>* " +policies[1];
+    }
+
+    let data = "h3. {panel:title=(on) *Ready for verification*|titleBGColor=#FFCEB8|titleColor=#292929}{panel}<br><br>h4. Redirect platform<br> * Akamai <br><br>" +
+    "h4. Policy Name and Version <br>"+ policies_text +"<br><br>&#92&#92<br>" +
+    "||From || To || <br>";
+
+
+    for (let i = 0; i < urlsa.length; i++) {
+        let urla = urlsa[i];
+        let urlb = urlsb[i];
+        if (urlb.indexOf("/") === 0) {
+            urls += "| https://" + urla + " | " + "https://" + get_domain() + urlb + " |<br>";
+        } else {
+            urls += "| https://" + urla + " | " + urlb + " |<br>";
+        }
+    }
+    notes += "<br>h4. {color:red}Notes{color} <br> * Notes <br><br>*FYI*<br>[~vivian.chollette], @reporter";
+
+    $("#ticket-comment").html(data + urls + notes);
 }

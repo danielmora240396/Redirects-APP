@@ -5,6 +5,7 @@ $(document).ready(function(){
     $("#description").val("");
     $("#urlsa").val("");
     $("#urlsb").val("");
+    $("#show-final-result-options").val("1");
     $("#generate-btn").prop("disabled", true);
     if (localStorage.getItem('theme')==="dark") {
         $("#theme").prop("checked", true);
@@ -91,6 +92,7 @@ $(document).ready(function(){
       get_urlsa();
       get_urlsb();
       get_webops_ticket();
+      get_wu_ticket();
       fill_final_table();
       $("#show-final-result-options").css("display", "block");
      
@@ -113,30 +115,20 @@ $(document).ready(function(){
       switch (val) {
         case "1":
           $("#result").css("display", "inline-table");
-          $("#urlsa-result").css("display", "none");
-          $("#urlsb-result").css("display", "none");
+          $("#ticket-comment").css("display", "none");
           $("#ticket-result").css("display", "none");
           break;
 
           case "2":
-          $("#result").css("display", "none");
-          $("#urlsa-result").css("display", "inline-table");
-          $("#urlsb-result").css("display", "inline-table");
-          $("#ticket-result").css("display", "none");
+            $("#result").css("display", "none");
+            $("#ticket-comment").css("display", "none");
+            $("#ticket-result").css("display", "block");
           break;
 
           case "3":
           $("#result").css("display", "none");
-          $("#urlsa-result").css("display", "inline-table");
-          $("#urlsb-result").css("display", "inline-table");
           $("#ticket-result").css("display", "none");
-          break;
-
-          case "4":
-          $("#result").css("display", "none");
-          $("#urlsa-result").css("display", "none");
-          $("#urlsb-result").css("display", "none");
-          $("#ticket-result").css("display", "block");
+          $("#ticket-comment").css("display", "block");
           break;
 
         default:
@@ -149,9 +141,5 @@ $(document).ready(function(){
       
     });
 
-
-    
-
-    
 
 });

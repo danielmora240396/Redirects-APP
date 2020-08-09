@@ -19,6 +19,12 @@
         <div class="img-container">
             <img src="img/1200px-Akamai_logo.svg.png" alt="">
         </div>
+        <div style="float: right;">
+            <label class="switch">
+                <input id="theme" type="checkbox">
+                <span class="slider round"></span>
+            </label>  
+        </div>
     </div>
     <div id="sticky-nav" class="container">
         <div class="row">
@@ -53,14 +59,6 @@
                     <select class="form-control" name="" id="drop-host"></select>
                 </div>
             </div>
-            <div style="text-align: center;">
-                <label class="switch">
-                    <input id="theme" type="checkbox">
-                    <span class="slider round"></span>
-                </label>  
-                <p id="error-section"></p>
-            </div>
-            
         </div>
         <div class="col-sm-9">
            
@@ -81,6 +79,9 @@
                     <textarea placeholder="To" id="urlsb" class="form-control" name="" id="" cols="30" rows="10"></textarea>
                 </div>
             </div>
+        </div>
+        <div style="text-align: center;">
+            <p id="error-section"></p>
         </div>
     </div>
     <a id="result-anchor" href="#"></a>
@@ -104,7 +105,8 @@
         <div class="col-sm-12">
             <select style="display: none;" id="show-final-result-options" class="form-control" name="" id="" aria-placeholder="test">
                 <option value="1" selected>URLs Table</option>
-                <option value="4">WebOps ticket</option>
+                <option value="2">WebOps ticket</option>
+                <option value="3">Web Updates ticket</option>
             </select>
         </div>
         <div class="col-sm-12">
@@ -115,6 +117,9 @@
                <p style="display: none;" id="ticket-result">
 
                </p>  
+               <p style="display: none; font-size: 13px;" id="ticket-comment">
+                test
+                </p>  
             </div>
         </div>
     </div>
