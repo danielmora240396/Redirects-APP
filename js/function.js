@@ -111,7 +111,7 @@ function format_new(){
     let newformat = "";
     for (let i = 0; i < urlsb.length; i++) {
         let host = urlsa[i].slice(0, urlsa[i].indexOf('.com') + 4);
-        if (urlsb[i].indexOf(host) != -1) {
+        if (urlsb[i].indexOf(host) != -1 && host != "support.solarwinds.com") {
             urlsb[i] = remove_host(urlsb[i]);
             urlsb[i] = urlsb[i].replace(host, '');
         }
