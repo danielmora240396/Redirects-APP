@@ -5,8 +5,7 @@ let sites = [
     {site: "www.serv-u.com", policy: "ER_Servu", policy_loc: "ER_Servu", lang: ['NA']},
     {site: "www.kiwisyslog.com", policy: "ER_Kiwi", policy_loc: "ER_Kiwi", lang: ['NA']},
     {site: "www.appoptics.com", policy: "ER_appotpics", policy_loc: "ER_appotpics", lang: ['/de/', '/es/', '/pt/', '/fr/', '/ja/', '/ko/', '/zh/']},
-    {site: "try.solarwinds.com", policy: "ER_trySolarwinds", policy_loc: "ER_trySolarwinds", lang: ['NA']},
-    {site: "support.solarwinds.com", policy: "ER_CSC_2", policy_loc: "ER_CSC_2", lang: ['NA']}
+    {site: "try.solarwinds.com", policy: "ER_trySolarwinds", policy_loc: "ER_trySolarwinds", lang: ['NA']}
 ];
 
 let ER_solarwinds3 = ['www.solarwinds.com/resources', 'www.solarwinds.com/free-tools', 'www.solarwinds.com/sedemo'];
