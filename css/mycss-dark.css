@@ -248,3 +248,18 @@ html {
 #show-final-result-options {
   width: 25%;
 }
+
+.alternative-buttons {
+  display: none;
+}
+
+@media only screen and (max-width: 559px) {
+  .alternative-buttons {
+    display: block;
+  }
+
+  #switch-container {
+    float: none !important;
+    margin-top: 10px;
+  }
+}

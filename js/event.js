@@ -57,7 +57,7 @@ $(document).ready(function(){
     });
 
 
-    $("#header").on("change", "#theme",function(){
+    $("body").on("change", ".switch",function(){
       if ($("#theme").is(':checked')) {
         $("body").addClass('dark');
         $("body").removeClass('light');
@@ -90,11 +90,11 @@ $(document).ready(function(){
       $("#list-urlsb").addClass("active-tab");
     });
 
-    $("#header").on('click', "#clean-btn", function(){
+    $("body").on('click', "#clean-btn", function(){
         clean();
     });
 
-    $("#header").on("click", "#generate-btn", function(){
+    $("body").on("click", "#generate-btn", function(){
       fill_table();
       generate_content();
       get_urlsa();
