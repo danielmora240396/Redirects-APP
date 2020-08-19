@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
-    $("#header").load("/shared/header.html");
-    $("#footer").load("/shared/footer.html");
+    $("#header").load("https://raw.githubusercontent.com/danielmora240396/Redirects-APP/master/Shared/header.html");
+    $("#footer").load("https://raw.githubusercontent.com/danielmora240396/Redirects-APP/master/Shared/footer.html");
     fill_dropdown();
     //$("#theme").prop("checked", true);
     $("#description").focus();
