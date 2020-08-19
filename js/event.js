@@ -1,6 +1,7 @@
+
 $(document).ready(function(){
-
-
+    $("#header").load("shared/header.html");
+    $("#footer").load("shared/footer.html");
     fill_dropdown();
     //$("#theme").prop("checked", true);
     $("#description").focus();
@@ -56,7 +57,7 @@ $(document).ready(function(){
     });
 
 
-    $("#theme").change(function(){
+    $("#header").on("change", "#theme",function(){
       if ($("#theme").is(':checked')) {
         $("body").addClass('dark');
         $("body").removeClass('light');
@@ -89,11 +90,11 @@ $(document).ready(function(){
       $("#list-urlsb").addClass("active-tab");
     });
 
-    $("#clean-btn").on('click', function(){
-      clean();
+    $("#header").on('click', "#clean-btn", function(){
+        clean();
     });
 
-    $("#generate-btn").on("click", function(){
+    $("#header").on("click", "#generate-btn", function(){
       fill_table();
       generate_content();
       get_urlsa();
