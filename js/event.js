@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
-    $("#header").load("shared/header.html");
-    $("#footer").load("shared/footer.html");
+    $("#header").load("/shared/header.html");
+    $("#footer").load("/shared/footer.html");
     fill_dropdown();
     //$("#theme").prop("checked", true);
     $("#description").focus();
