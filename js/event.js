@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+
     fill_dropdown();
     //$("#theme").prop("checked", true);
     $("#description").focus();
@@ -26,25 +28,30 @@ $(document).ready(function(){
       if ($("#urlsa").val() != "") {
         validations();
       }
+      //ready_to_generate();
     });
 
-    $("#urlsa").on('input', function(){
+    $("#urlsa").on('keyup', function(){
       if ($("#urlsa").val() != "") {
         format_old();
         validations();
         clean_table();
-        ready_to_generate();
+        //ready_to_generate();
+        //$("#old-number").text("(0)");
+        //$("#old-number").text(number_urls(get_urls("#urlsa")));
       }
         
         
     });
 
-    $("#urlsb").on('input', function(){
+    $("#urlsb").on('keyup', function(){
       if ($("#urlsb").val() != "") {
         format_new();
         validations();
         clean_table();
-        ready_to_generate();
+        //ready_to_generate();
+        //$("#new-number").text("(0)");
+        //$("#new-number").text(number_urls(get_urls("#urlsb")));
       }
     });
 

@@ -47,12 +47,18 @@ function validations() {
     let msg = "";
     if (valid_host() != 0) {
         msg += valid_host() + "\n";
+        $("#generate-btn").prop("disabled", true);
+        $("#generate-btn").css("background-color", "#f7958e");
     } else {
         if (supported_host() != 0) {
             msg += supported_host();
+            $("#generate-btn").prop("disabled", true);
+            $("#generate-btn").css("background-color", "#f7958e");
         } else {
             if (!urls_count()) {
                 msg+= errors[2].message;
+                $("#generate-btn").prop("disabled", true);
+                $("#generate-btn").css("background-color", "#f7958e");
             } else {
                 if (language_validation_table().length > 1) {
                     msg+=errors[3].message;
@@ -61,8 +67,11 @@ function validations() {
                     if (repeat_urls().length > 1) {
                         msg+= errors[4].message;
                         fill_table();
+                        $("#generate-btn").prop("disabled", true);
+                        $("#generate-btn").css("background-color", "#f7958e");
                     } else {
                         fill_table();
+                        ready_to_generate();
                     }
                 }
             }
@@ -110,10 +119,14 @@ function format_new(){
     const urlsb = get_urls("#urlsb");
     let newformat = "";
     for (let i = 0; i < urlsb.length; i++) {
-        let host = urlsa[i].slice(0, urlsa[i].indexOf('.com') + 4);
+        let host = $("#host").text();
+        //let host = urlsa[i].slice(0, urlsa[i].indexOf('.com') + 4);
         if (urlsb[i].indexOf(host) != -1) {
             urlsb[i] = remove_host(urlsb[i]);
             urlsb[i] = urlsb[i].replace(host, '');
+            if (urlsb[i].length === 0) {
+                urlsb[i] = "/";
+            }
         }
         newformat+= urlsb[i]+"\n";
     }
@@ -211,7 +224,7 @@ function repeat_urls(){
     let rows = ["placehoder"];
 
     for (let i = 0; i < urlsa.length; i++) {
-        if (urlsa[i].indexOf(urlsb[i]) > -1) {
+        if (urlsa[i].slice(urlsa[i].indexOf(".com") + 4, urlsa[i].length) ===  urlsb[i]) {
             rows.push(i);
         }
     }
@@ -265,6 +278,7 @@ function clean(){
     $("#urlsb").val("");
     $("#description").val("");
     $("#generate-btn").prop("disabled", true);
+    $("#generate-btn").css("background-color", "#f7958e");
     $("a[href*='#result-anchor']").remove();
     clean_table();
     $("textarea").css('height', '240px');
@@ -272,7 +286,7 @@ function clean(){
     $("#show-final-result-options").css("display", "none");
     $("#ticket-result").css("display", "none");
     $("#ticket-comment").css("display", "none");
-    $("#generate-btn").css("background-color", "#f7958e");
+    
     $("#error-section").html("");
     
 }
@@ -429,4 +443,8 @@ function get_wu_ticket(){
     notes += "<br>h4. {color:red}Notes{color} <br> * Notes <br><br>*FYI*<br>[~vivian.chollette], @reporter";
 
     $("#ticket-comment").html(data + urls + notes);
+}
+
+function number_urls(data) {
+    return data.length;
 }
