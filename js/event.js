@@ -30,27 +30,40 @@ $(document).ready(function(){
       //ready_to_generate();
     });
 
-    $("#urlsa").on('keyup', function(){
+    $("#urlsa").on('keyup', function(e){
+      if (e.which !== 13) {
+        if ($("#urlsa").val() != "") {
+          format_old();
+          validations();
+          clean_table();
+        }
+      }
+
+    });
+
+    $("#urlsa").on('focusout', function(){
       if ($("#urlsa").val() != "") {
         format_old();
         validations();
         clean_table();
-        //ready_to_generate();
-        //$("#old-number").text("(0)");
-        //$("#old-number").text(number_urls(get_urls("#urlsa")));
       }
-        
-        
     });
 
-    $("#urlsb").on('keyup', function(){
+    $("#urlsb").on('keyup', function(e){
+      if (e.which !== 13) {
+        if ($("#urlsb").val() != "") {
+          format_new();
+          validations();
+          clean_table();
+        }
+      }
+    });
+
+    $("#urlsb").on('focusout', function(){
       if ($("#urlsb").val() != "") {
         format_new();
         validations();
         clean_table();
-        //ready_to_generate();
-        //$("#new-number").text("(0)");
-        //$("#new-number").text(number_urls(get_urls("#urlsb")));
       }
     });
 
@@ -73,27 +86,6 @@ $(document).ready(function(){
         localStorage.setItem("theme", "light");
       }
 
-    });
-
-    $("#list-description").on('click', function(){
-      $("#description").focus();
-      $("#list-description").addClass("active-tab");
-      $("#list-urlsa").removeClass("active-tab");
-      $("#list-urlsb").removeClass("active-tab");
-    });
-
-    $("#list-urlsa").on('click', function(){
-      $("#urlsa").focus();
-      $("#list-description").removeClass("active-tab");
-      $("#list-urlsa").addClass("active-tab");
-      $("#list-urlsb").removeClass("active-tab");
-    });
-
-    $("#list-urlsb").on('click', function(){
-      $("#urlsb").focus();
-      $("#list-description").removeClass("active-tab");
-      $("#list-urlsa").removeClass("active-tab");
-      $("#list-urlsb").addClass("active-tab");
     });
 
     $("body").on('click', "#clean-btn", function(){
