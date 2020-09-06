@@ -1,0 +1,23 @@
+body {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.header {
+  height: 150px;
+  background-image: -moz-linear-gradient(rgba(0,0,0, 0.80), rgba(0, 0, 1, 0.50)) ,url(../img/background.png);
+  border-bottom: 5px groove #EFA13E;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  z-index: 2;
+  margin-bottom: 10px;
+}
+
+textarea {
+  margin-top: 20px;
+  font-size: 14px !important;
+}
+
+input, select {
+  margin-bottom: 10px;
+}
