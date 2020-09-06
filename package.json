@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/danielmora240396/Redirects-APP/issues"
   },
-  "homepage": "https://danielmora240396.github.io/",
+  "homepage": "https://danielmora240396.github.io/Redirects-APP/",
   "devDependencies": {
     "gh-pages": "^3.1.0",
     "webpack": "^4.44.1",
