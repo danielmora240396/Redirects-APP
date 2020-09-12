@@ -13,3 +13,9 @@ export const sitesData = [
 
 export const redirectTypes = [301, 302];
 
+export const errors = {
+    wrongDomain: 'Selected domain does not match.',
+    selfRedirected: 'This is redirected to the same URL, this might cause a redirect loop.',
+    locMismatch: 'Localized versions do not match.'
+}
+
