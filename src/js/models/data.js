@@ -19,3 +19,17 @@ export const errors = {
     locMismatch: 'Localized versions do not match.'
 }
 
+const date = new Date();
+
+export const fileContent = 
+`# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -			
+# Policy Type: Edge Redirector Cloudlet			
+# Policy: See file name			
+# Policy ID: 42899			
+# Version: ##			
+# Description: for the next 5k redirects			
+# Create Date: ${date}			
+# Last Update: ${date}			
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+ruleName,matchURL,scheme,host,path,query,disabled,result.useIncomingQueryString,result.useIncomingSchemeAndHost,result.useRelativeUrl,result.redirectURL,result.statusCode\n`;
+

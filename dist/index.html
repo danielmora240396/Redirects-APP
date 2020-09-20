@@ -13,7 +13,7 @@
 </head>
 <body class="">
     <div class="container-fluid header">
-        <div style="padding-top: 100px;" class="row">
+        <div style="padding-top: 30px;" class="row">
             <div class="col-sm-6">
                <ul class="anchor-list">
                    <li><a href="#redirect-description-anchor">Description</a> | </li>
@@ -24,6 +24,9 @@
             </div>
             <div class="col-sm-6">
                 <div class="buttons">
+                    <label id="theme" for="">
+                        <input type="checkbox">
+                    </label>
                     <button type="button" class="btn btn-success" id="generate-btn" disabled>Generate</button>
                     <button type="button" class="btn btn-info" id="clear-btn">Clear</button>
                 </div>
@@ -51,6 +54,19 @@
                             <!--<option></option>-->
                         </select>
                     </div>
+                    <hr>
+                    <div id="next-steps" style="display: none;">
+                        <label for="ticket-content">Next actions:</label>
+                        <div>
+                            <a id="webopsTicket" href="">Submit WebOps Ticket</a>
+                        </div>
+                        <div>
+                            <a id="wuTicket" href="https://jira.solarwinds.com/browse/WU-16259" target="_blank" rel="noopener">Generate WU comment</a>
+                        </div>
+                        <textarea style="display: none;" name="" id="ticket-content" cols="30" rows="10"></textarea>
+            
+                        
+                    </div>
                 </div>
                 <div class="col-sm-9">
                     <div class=" row">
@@ -69,6 +85,11 @@
                 <div id="result-table" class="result-table col-sm-12">
                     <div style="text-align: center;">
                         <h2 id="result-table-anchor">Result</h2>
+                    </div>
+                    <div>
+                        <label for="validate-language"> Validate Language
+                            <input type="checkbox" name="" id="validate-language" checked>
+                        </label>
                     </div>
                     <div id="table-container">
                         <table class="table">

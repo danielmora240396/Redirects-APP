@@ -1,16 +1,20 @@
+import { elements } from '../views/base';
 import { sitesData } from './data';
 import { errors } from './data';
+import { fileContent } from './data';
 
 export default class Redirect {
-    constructor(ruleName, domain){
+    constructor(ticket, ruleName, domain){
+        this.ticket = ticket,
         this.ruleName = ruleName
         this.domain = domain,
         this.info = []
         this.status = false;
-        this.policy = []
+        this.policy = [];
+        this.langValidation = true;
     }
 
-    addRedirect(redirectId, matchUrl, resultUrl, queryString, schemeAndHost, useRelative, statusCode){
+    addRedirect(redirectId, matchUrl = "TBD", resultUrl = "/", queryString, schemeAndHost, useRelative, statusCode, langValidation){
         const redirect = {
                 redirectId: redirectId,
                 matchUrl: matchUrl,
@@ -23,6 +27,7 @@ export default class Redirect {
                 redirectStatus: this.validations(matchUrl, resultUrl).status,
                 redirectStatusMessage: this.validations(matchUrl, resultUrl).message.join('\n')
         };
+        this.langValidation = langValidation;
         this.info.push(redirect);
         this.getPolicy();
     }
@@ -66,7 +71,7 @@ export default class Redirect {
             result.message.push(errors.selfRedirected);
         }
 
-        if (resultUrl.indexOf('/') === 0) {
+        if (resultUrl.indexOf('/') === 0 && this.langValidation) {
                 const lang = this.getLang();
                 if (lang[0] !== 'NA') {
                     for (const e of lang) {
@@ -79,6 +84,19 @@ export default class Redirect {
                 }
         }
         return result;
+    }
+
+    readyToGenerate(){
+        let flag = true;
+        for (const interator of this.info) {
+            if (!interator.redirectStatus) {
+                this.status = false;
+                flag = false;
+                break;
+            }
+        }
+
+        return flag;
     }
 
     updateRedirect(id, data){
@@ -100,11 +118,11 @@ export default class Redirect {
     }
 
     isRelative(resultUrl){
-        return resultUrl.includes(this.domain) ? 1 : '';
+        return resultUrl.startsWith('/') ? 1: '';
     }
 
     useHost(resultUrl) {
-        return resultUrl.includes(this.domain) ? 'copy_scheme_hostname' : '';
+        return resultUrl.startsWith('/') ? 'copy_scheme_hostname': '' ;
     }
 
     getPolicy(){
@@ -120,5 +138,51 @@ export default class Redirect {
             }
         });
     }
+
+    generateContent(){
+        const files = [];
+        let content = fileContent;
+        let locContent = fileContent;
+
+        this.info.forEach((e, index) => {
+            if (!e.isLoc) {
+                content+= `${this.ruleName},${e.matchUrl},,,,,,${e.queryString},${e.useRelative},${e.schemeAndHost},${e.resultUrl},${e.statusCode}\n`;
+            } else {
+                locContent += `${this.ruleName},${e.matchUrl},,,,,,${e.queryString},${e.useRelative},${e.schemeAndHost},${e.resultUrl},${e.statusCode}\n`;
+            }
+        });
+
+        files.push(content);
+        files.push(locContent);
+
+        return files;
+
+    }
+
+    generateTicketContent(ticket){
+
+        if (ticket === "wo") {
+            let content = `Hi WebOps could you please sync the following policies and versions to Akamai Staging %0D%0A%0D%0A%E2%80%A2%09${this.policy}%0D%0A%0D%0AThank you.%0D%0A`;
+            return content.replace(',','%0D%0A%E2%80%A2%09');
+        } else {
+            let urls = "";
+            this.info.forEach(e => {
+                if (e.resultUrl.indexOf('/') === 0) {
+                    urls += `| https://${e.matchUrl} | https://${this.domain + e.resultUrl} |\n`;
+                } else {
+                    urls += `| https://${e.matchUrl} |${e.resultUrl} |\n`;
+                }
+                
+            });
+            urls += `h4. {color:red}Notes{color}\n* Notes\n\n*FYI*\n[~vivian.chollette], @reporter`;
+
+            let data = `h3. {panel:title=(on) *Ready for verification*|titleBGColor=#FFCEB8|titleColor=#292929}{panel}\n\nh4. Redirect platform\n * Akamai \n\nh4. Policy Name and Version \n * ${this.policy}\n\n\n\n\n||From || To ||\n${urls}`;
+    
+            return data;
+        }
+
+        
+    }
     
 }
+

@@ -8,5 +8,11 @@ export const elements = {
     tableResult: '.table',
     tableRedirectType: '.individual-redirectType',
     tableQueryString: '.individual-checkbox',
-    clearButton: '#clear-btn'
+    clearButton: '#clear-btn',
+    generateButton: '#generate-btn',
+    langValidation: '#validate-language',
+    ticketContent: '#ticket-content',
+    ticketContentSelector: "#ticket-content-selector",
+    wuTicket: "#wuTicket",
+    themeSwitch: "#theme input"
 }
