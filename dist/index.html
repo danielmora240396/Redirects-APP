@@ -24,9 +24,10 @@
             </div>
             <div class="col-sm-6">
                 <div class="buttons">
-                    <label id="theme" for="">
-                        <input type="checkbox">
-                    </label>
+                    <div class="custom-control custom-switch" id="theme">
+                        <input type="checkbox" class="custom-control-input" id="customSwitches">
+                        <label class="custom-control-label" for="customSwitches">Dark Theme</label>
+                    </div>
                     <button type="button" class="btn btn-success" id="generate-btn" disabled>Generate</button>
                     <button type="button" class="btn btn-info" id="clear-btn">Clear</button>
                 </div>
@@ -52,6 +53,12 @@
                         <label for="redirect-type">Redirect Type</label>
                         <select class="form-control" name="" id="redirect-type">
                             <!--<option></option>-->
+                        </select>
+                    </div>
+                    <div>
+                        <select name="" id="copyQueryString" class="form-control">
+                            <option value="1" selected>Copy query string</option>
+                            <option value="">Do not copy query string</option>
                         </select>
                     </div>
                     <hr>

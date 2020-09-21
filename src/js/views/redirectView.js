@@ -61,7 +61,7 @@ export const getRedirectData = () => {
     const redirect = {
         ruleName: document.querySelector(elements.redirectDescription).value.trim(),
         domain: document.querySelector(elements.sitesSelector).value,
-        queryString: 1,
+        queryString: document.querySelector(elements.queryStringSelector).value,
         schemeAndHost: 1,
         useRelative: 'copy_scheme_hostname',
         statusCode: parseInt(document.querySelector(elements.typeSelector).value),
@@ -93,7 +93,7 @@ export const renderTableResult = (redirect) => {
             </select>
         </td>
         <td>
-        <input class='form-control individual-checkbox' type="checkbox" name="" id="" ${redirect.queryString === 1? 'checked': ''}>
+        <input class='form-control individual-checkbox' type="checkbox" name="" id="" ${redirect.queryString == 1? 'checked': ''}>
         </td>
     </tr>`;
     document.querySelector(elements.tableResult).insertAdjacentHTML('beforeend', markup);
@@ -112,6 +112,7 @@ export const clearInput = () => {
     document.querySelector(elements.urlsaText).rows = '10';
     document.querySelector("#next-steps").style.display = 'none';
     document.querySelector("#wuTicket").textContent = "Generate WU comment";
+    document.querySelector(elements.queryStringSelector).value = 1;
 }
 
 export const downloadContent = (fileName, data) => {

@@ -75,7 +75,7 @@ export default class Redirect {
                 const lang = this.getLang();
                 if (lang[0] !== 'NA') {
                     for (const e of lang) {
-                        if (url.includes(e) && !resultUrl.includes(e) || !url.includes(e) && resultUrl.includes(e)) {
+                        if (url.includes(e) && !resultUrl.includes(e)) {
                             result.status = false;
                             result.message.push(errors.locMismatch);
                             continue;
@@ -144,8 +144,8 @@ export default class Redirect {
         let content = fileContent;
         let locContent = fileContent;
 
-        this.info.forEach((e, index) => {
-            if (!e.isLoc) {
+        this.info.forEach((e) => {
+            if ((!e.isLoc && !e.matchUrl.includes("/free-tools/") && !e.matchUrl.includes("/resources/") || this.domain !== "www.solarwinds.com")) {
                 content+= `${this.ruleName},${e.matchUrl},,,,,,${e.queryString},${e.useRelative},${e.schemeAndHost},${e.resultUrl},${e.statusCode}\n`;
             } else {
                 locContent += `${this.ruleName},${e.matchUrl},,,,,,${e.queryString},${e.useRelative},${e.schemeAndHost},${e.resultUrl},${e.statusCode}\n`;

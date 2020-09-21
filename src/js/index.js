@@ -110,6 +110,8 @@ window.addEventListener('load', e => {
         redirectView.formatURLsB();
     })
 
+    document.querySelector(elements.queryStringSelector).addEventListener('change', dataTreatment);
+
     document.querySelector(elements.tableResult).addEventListener('click', e => {
         const redirectId = e.target.closest('.table-row').id;
         if (e.target.matches(`${elements.tableRedirectType} option`)) {

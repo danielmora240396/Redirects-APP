@@ -2,6 +2,7 @@ export const elements = {
     sitesSelector: '#redirect-domain',
     typeSelector: '#redirect-type',
     redirectDescription: '#redirect-description',
+    queryStringSelector: "#copyQueryString",
     urlsaText: '#urlsa-redirect',
     urlsbText: '#urlsb-redirect',
     validateBtn: '#validate-btn',
@@ -14,5 +15,6 @@ export const elements = {
     ticketContent: '#ticket-content',
     ticketContentSelector: "#ticket-content-selector",
     wuTicket: "#wuTicket",
-    themeSwitch: "#theme input"
+    themeSwitch: "#theme input",
+
 }
