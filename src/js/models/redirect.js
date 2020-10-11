@@ -4,14 +4,14 @@ import { errors } from './data';
 import { fileContent } from './data';
 
 export default class Redirect {
-    constructor(ticket, ruleName, domain){
+    constructor(ticket, ruleName, domain, langValidation){
         this.ticket = ticket,
         this.ruleName = ruleName
         this.domain = domain,
         this.info = []
         this.status = false;
         this.policy = [];
-        this.langValidation = true;
+        this.langValidation = langValidation;
     }
 
     addRedirect(redirectId, matchUrl = "TBD", resultUrl = "/", queryString, schemeAndHost, useRelative, statusCode, langValidation){
@@ -75,7 +75,7 @@ export default class Redirect {
                 const lang = this.getLang();
                 if (lang[0] !== 'NA') {
                     for (const e of lang) {
-                        if (url.includes(e) && !resultUrl.includes(e)) {
+                        if ((url.includes(e) && !resultUrl.includes(e)) || (!url.includes(e) && resultUrl.includes(e))) {
                             result.status = false;
                             result.message.push(errors.locMismatch);
                             continue;

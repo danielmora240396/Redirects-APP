@@ -2,13 +2,18 @@ import * as Data from './models/data';
 import Redirect from './models/redirect';
 import * as redirectView from './views/redirectView';
 import {elements} from './views/base';
+import $ from 'jquery';
 
 const state = {
 
 };
 
-window.addEventListener('load', e => {
+$(function(){
     Data.sitesData.forEach(e=> redirectView.fillDropDownSites(e.site));
+});
+
+window.addEventListener('load', e => {
+    
     Data.redirectTypes.forEach(e => redirectView.fillDropDownTypes(e));
     document.querySelector(elements.redirectDescription).focus();
     redirectView.clearInput();
@@ -18,6 +23,10 @@ window.addEventListener('load', e => {
         if (e.keyCode === 13) {
             document.querySelector(elements.sitesSelector).focus();
         }
+    });
+
+    document.querySelector(elements.redirectDescription).addEventListener('focusout', e=> {
+        document.querySelector(elements.redirectDescription).value = document.querySelector(elements.redirectDescription).value.trim();
     });
 
     document.querySelector(elements.sitesSelector).addEventListener('keyup', e => {
@@ -39,9 +48,7 @@ window.addEventListener('load', e => {
             e.which !== 37 &&
             e.which !== 38 &&
             e.which !== 39 &&
-            e.which !== 40 &&
-            e.which !== 8 &&
-            e.which !== 46) {
+            e.which !== 40) {
             redirectView.formatURLsA();
             dataTreatment();
         }
@@ -52,9 +59,7 @@ window.addEventListener('load', e => {
             e.which !== 37 &&
             e.which !== 38 &&
             e.which !== 39 &&
-            e.which !== 40 &&
-            e.which !== 8 &&
-            e.which !== 46) {
+            e.which !== 40) {
             redirectView.formatURLsB();
             dataTreatment();
         }
@@ -71,12 +76,10 @@ window.addEventListener('load', e => {
     });
 
     const dataTreatment = () => {   
-         //data.urlsa[0] !== "" && data.urlsb[0] !== "" &&
-         //data.urlsa && data.urlsb
         const data = redirectView.getRedirectData();
         if (data.ruleName) {
-                if (data.urlsa.length > 1 && data.urlsb.length > 1) {
-                    state.redirect = new Redirect(data.ruleName.split(' ')[0], data.ruleName, data.domain);
+                if (data.urlsa !== undefined || data.urlsb !== undefined) {
+                    state.redirect = new Redirect(data.ruleName.split(' ')[0], data.ruleName, data.domain, data.langValidation);
                     data.urlsa.forEach((e, i) => {
                         state.redirect.addRedirect(`redirect-${parseInt(i, 10) + 1}`, e , data.urlsb[i] === "" ? "/" : data.urlsb[i], data.queryString, data.schemeAndHost, data.useRelative, data.statusCode, data.langValidation);
                     });
@@ -95,7 +98,7 @@ window.addEventListener('load', e => {
     }
 
     document.querySelector(elements.redirectDescription).addEventListener('input', e => {
-        dataTreatment();
+        //dataTreatment();
     });
 
     document.querySelector(elements.sitesSelector).addEventListener('change', e => {
@@ -148,7 +151,10 @@ window.addEventListener('load', e => {
 
     })
 
-    document.querySelector(elements.langValidation).addEventListener('change', dataTreatment);
+    document.querySelector(elements.langValidation).addEventListener('change', e => {
+        state.redirect.langValidation = false;
+        dataTreatment();
+    });
 
     document.querySelector(elements.wuTicket).addEventListener('click', e=> {
         document.querySelector(elements.ticketContent).style.display = "block";

@@ -39,13 +39,12 @@ export const formatURLsB = () => {
     const domain = document.querySelector(elements.sitesSelector).value;
     let newArray = "";
     if (urlsArray) {
-        /*const newArray = urlsArray.map(e => {
-            const outcome = removeProtocol(e).replace(domain, '');
-            return outcome.length === 0 ? `${outcome}/` : outcome;
-        });*/
         for (const iterator of urlsArray) {
             if (iterator !== "") {
-                const outcome = removeProtocol(iterator).replace(domain, '');
+                let outcome = iterator;
+                if (iterator.includes(domain)) {
+                    outcome = removeProtocol(iterator).replace(domain, '');
+                }
                 newArray += outcome.length === 0 ? `${outcome}/\n` : outcome+'\n';
             }
         }
