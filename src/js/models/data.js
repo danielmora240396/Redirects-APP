@@ -5,7 +5,7 @@ export const sitesData = [
     {site: "www.serv-u.com", policy: "ER_Servu", policy_loc: "ER_Servu", lang: ['NA']},
     {site: "www.kiwisyslog.com", policy: "ER_Kiwi", policy_loc: "ER_Kiwi", lang: ['NA']},
     {site: "www.appoptics.com", policy: "ER_appotpics", policy_loc: "ER_appotpics", lang: ['/de/', '/es/', '/pt/', '/fr/', '/ja/', '/ko/', '/zh/']},
-    {site: "try.solarwinds.com", policy: "ER_trySolarwinds", policy_loc: "ER_trySolarwinds", lang: ['NA']},
+    {site: "try.solarwinds.com", policy: " ER_TrySWDC", policy_loc: " ER_TrySWDC", lang: ['NA']},
     {site: "support.solarwinds.com", policy: "ER_CSC_2", policy_loc: "ER_CSC_2", lang: ['NA']},
     {site: "www.loggly.com", policy: "ER_Loggly", policy_loc: "ER_Loggly", lang: ['NA']},
     {site: "www.pingdom.com", policy: "ER_Pingdom", policy_loc: "ER_Pingdom", lang: ['NA']}
@@ -21,15 +21,5 @@ export const errors = {
 
 const date = new Date();
 
-export const fileContent = 
-`# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -			
-# Policy Type: Edge Redirector Cloudlet			
-# Policy: See file name			
-# Policy ID: 42899			
-# Version: ##			
-# Description: for the next 5k redirects			
-# Create Date: ${date}			
-# Last Update: ${date}			
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-ruleName,matchURL,scheme,host,path,query,disabled,result.useIncomingQueryString,result.useIncomingSchemeAndHost,result.useRelativeUrl,result.redirectURL,result.statusCode\n`;
+export const fileContent = `ruleName,matchURL,scheme,host,path,query,disabled,result.useIncomingQueryString,result.useIncomingSchemeAndHost,result.useRelativeUrl,result.redirectURL,result.statusCode\n`;
 
