@@ -1,0 +1,244 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#redirect-description-anchor, #urlsa-redirect-anchor, #urlsb-redirect-anchor, #result-table-anchor {
+  scroll-margin-top: 170px;
+}
+
+.header {
+  background-color:  #121212;
+  border-bottom: 5px groove#017374;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  z-index: 2;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.footer {
+  border-top: 5px groove #017374;
+  height: 150px;
+  margin-top: 30px;
+  background-color: #121212;
+}
+
+.footer img {
+  width: 35px
+}
+
+.footer .row {
+  margin-top: 10px;
+}
+
+textarea {
+  font-size: 14px !important;
+}
+
+input, select {
+  margin-bottom: 10px;
+}
+
+.buttons {
+  margin-bottom: 10px;
+
+}
+
+.table tr td:first-child, td:nth-child(2), td:nth-child(3) {
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: #e1e1e1;
+  
+}
+
+.table tr th:first-child, th:nth-child(2), th:nth-child(3) {
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: #e1e1e1;
+  
+}
+/*
+.table tr td, th {
+  width: 50%;
+}*/
+
+.result-table {
+  padding-top: 15px;
+  /*border-top: dotted 2px #a1a1a1;*/
+  margin-top: 15px;
+}
+
+.table {
+  font-size: 14px;
+}
+.table tr:nth-child(uneven) {
+  background-color: #e6e3e3;
+}
+
+.wrong {
+  color: #ff0000;
+}
+
+.error-panel {
+  display: none;
+  position: absolute;
+  background-color: white;
+  color: black !important;
+  border-style: solid;
+  border-width: 1px;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.status-icon{
+  padding-right: 10px;
+}
+
+.status-icon:hover{
+  cursor: pointer;
+}
+
+.status-icon:hover .error-panel {
+  display: block;
+}
+
+.error-panel:hover {
+  cursor: text !important;
+}
+
+.table tr th {
+  text-align: center;
+}
+
+.border-bottom {
+  /*border-bottom-style: dotted;
+  border-bottom-width: 2px ;
+  border-bottom-color: #e1e1e1 ;
+  padding-bottom: 15px;*/
+}
+
+tr.wrong img {
+  animation: wrong 1s;
+}
+
+
+@keyframes wrong {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+
+.buttons button{
+  position: static;
+  float: right;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  background-color: #017374 !important;
+}
+
+.buttons #theme {
+  position: static;
+  float: right;
+  margin-right: 15px;
+  margin-bottom: 10px; 
+}
+
+
+.buttons #theme:hover, .buttons #theme input:hover, .buttons #theme label:hover {
+  cursor: pointer !important;
+}
+
+
+button:disabled {
+  cursor: not-allowed;
+}
+.anchor-list {
+  padding: 0px;
+  list-style-type: none;
+  color: white !important;
+  float: left;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+
+.anchor-list li {
+  float: left;
+  margin-right: 15px;
+}
+
+.anchor-list li a {
+  color: white;
+  text-decoration: none;
+}
+
+hr {
+  margin-top: 30px;
+}
+
+@media only screen and (max-width: 900px) {
+  #table-container {
+    overflow-x: scroll;
+  }
+
+  .anchor-list {
+    display: none;
+  }
+
+  .header div.row:first-child {
+    padding-top: 20px !important;
+  }
+  
+}
+
+#next-steps {
+  text-align: center;
+}
+
+#next-steps label {
+  padding-bottom: 15px;
+}
+
+#next-steps a {
+  background-color: #017374;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+}
+
+#next-steps div {
+  margin-bottom: 20px;
+}
+
+#next-steps a:hover {
+  background-color: #0b8d8f;
+}
+
+#copied-text {
+  font-size: 13px;
+}
+
+
+.dark {
+  background-color: #121212;
+  color: white !important;
+}
+
+.dark .form-control {
+  background-color: #292929;
+  color: white;
+}
+
+.dark table {
+  color: white;
+}

@@ -1,0 +1,93 @@
+body {
+  /*width: 500px;*/
+  padding: 3px;
+  background: #F6F6F6;
+  /*font-family: Roboto,sans-serif;*/
+}
+
+textarea{
+  height: 150px;
+}
+
+legend {
+  color: #04c9d7;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 50px;
+}
+
+fieldset {
+  width: 400px;
+  margin: auto;
+}
+
+/* Style the tab */
+div.tab {
+    border: 0;
+    border-bottom: 5px solid #04c9d7;
+    background-color: #444;
+    overflow: hidden;
+/*    border: 1px solid #ccc;
+    background-color: #f1f1f1;*/
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 15px 21px;
+    transition: 0.3s;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 13.43px;
+    font-weight: 500;
+}
+
+/* Style the buttons inside the tab */
+#doc_tab {
+    color: #e6e97b;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    /*background-color: #ddd;*/
+    background-color: #a1a1a1;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    /*background-color: #ccc;*/
+    background-color: #666666;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    /*border: 1px solid #ccc;*/
+    border-top: none;
+}
+
+/* Style the tab content with fade effect*/
+.tabcontent {
+  webkit-animation: fadeEffect 1s;
+animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+@-webkit-keyframes fadeEffect {
+from {opacity: 0;}
+to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/*Adjust container to be centered a bit more*/
+.container {
+    padding-left: 25px;
+}
