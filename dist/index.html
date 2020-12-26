@@ -61,6 +61,17 @@
                             <option value="">Do not copy query string</option>
                         </select>
                     </div>
+                        <div class="modal">
+                            <div class="modal-content">
+                                <h4>Generate localized URLs</h4>
+                                <div>
+                                    <label for="">URLs:</label>
+                                    <textarea style="margin-bottom: 20px;" rows="10" id="locOutcome" class="form-control" type="text"></textarea>
+                                    <button id="locConfirmation" class="btn btn-success">CONFIRM</button>
+                                    <button id="locDismiss" class="btn btn-danger">DISMISS</button>
+                                </div>
+                            </div>
+                        </div>
                     <hr>
                     <div id="next-steps" style="display: none;">
                         <label for="ticket-content">Next actions:</label>
@@ -71,18 +82,17 @@
                             <a id="wuTicket" href="https://jira.solarwinds.com/browse/WU-16259" target="_blank" rel="noopener">Generate WU comment</a>
                         </div>
                         <textarea style="display: none;" name="" id="ticket-content" cols="30" rows="10"></textarea>
-            
-                        
+                    
                     </div>
                 </div>
                 <div class="col-sm-9">
                     <div class=" row">
-                        <div class="col-sm-12">
-                            <label id="urlsa-redirect-anchor" for="urlsa-redirect">From</label>
+                        <div class="col-sm-12" style="margin-bottom: 15px;">
+                            <label id="urlsa-redirect-anchor" for="urlsa-redirect">From</label><img id="modalBtn" title="Generate localized versions" style="margin-left: 5px;" width="25px" src="./img/Info_info.png" alt="">
                             <textarea id="urlsa-redirect" name="" cols="30" rows="10" class="form-control" placeholder="From"></textarea>
                         </div>
                         <div class="col-sm-12">
-                            <label id="urlsb-redirect-anchor" for="urlsb-redrect">To</label>
+                            <label id="urlsb-redirect-anchor" for="urlsb-redrect">To</label><img id="modalBtnTwo" title="Generate localized versions" style="margin-left: 5px;" width="25px" src="./img/Info_info.png" alt="">
                             <textarea id="urlsb-redirect" name="" cols="30" rows="10" class="form-control" placeholder="To"></textarea>
                         </div>
                     </div>
