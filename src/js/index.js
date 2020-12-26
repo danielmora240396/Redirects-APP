@@ -214,7 +214,6 @@ window.addEventListener('load', e => {
         if (languages.length > 1) {
             $(".modal .modal-content h4").text("Generate localized URLs");
             $(".modal .modal-content #locConfirmation").prop("disabled", false);
-        }
             var urlsToConvert = $(urls).val().split("\n");
             var newContent = "";
             urlsToConvert.forEach(element => {
