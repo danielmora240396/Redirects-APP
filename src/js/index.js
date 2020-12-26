@@ -54,7 +54,7 @@ window.addEventListener('load', e => {
         }
     });
 
-    document.querySelector(elements.urlsbText).addEventListener('keyup', e => {
+    document.querySelector(elements.urlsbText).addEventListener('chang', e => {
         if (e.which !== 13 && 
             e.which !== 37 &&
             e.which !== 38 &&
@@ -177,5 +177,64 @@ window.addEventListener('load', e => {
         }
         
     });
+
+    $("#modalBtn").on("click", function(){
+        $(".modal").fadeIn();
+        generateLocVersions("#urlsa-redirect");
+        state.current = "#urlsa-redirect";
+    });
+
+    $("#modalBtnTwo").on("click", function(){
+        $(".modal").fadeIn();
+        generateLocVersions("#urlsb-redirect");
+        state.current = "#urlsb-redirect";
+    });
+
+    $("#locConfirmation").on("click", function(){
+        $(state.current).val($("#locOutcome").val());
+        $(".modal").fadeOut();
+        redirectView.formatURLsB();
+        redirectView.formatURLsA();
+        dataTreatment();
+    });
+
+    $("#locDismiss").on("click", function(){
+        $(".modal").fadeOut();
+    });
+
+    function generateLocVersions(urls){
+        var site = $("#redirect-domain").val();
+        var languages;
+        Data.sitesData.forEach(element => {
+            if (element.site === site) {
+                languages = element.lang;
+            }
+        });
+
+        if (languages.length > 1) {
+            $(".modal .modal-content h4").text("Generate localized URLs");
+            $(".modal .modal-content #locConfirmation").prop("disabled", false);
+        }
+            var urlsToConvert = $(urls).val().split("\n");
+            var newContent = "";
+            urlsToConvert.forEach(element => {
+                newContent += element +"\n";
+                languages.forEach(elements => {
+                    if (element.indexOf("/") > 0) {
+                        newContent += element.replace(".com/", ".com" + elements) + "\n";
+                    } else {
+                        newContent += element.replace("/", elements) + "\n";
+                    }
+                    
+                })
+            });
+
+            $("#locOutcome").val(newContent.trim());
+        } else {
+            $(".modal .modal-content h4").text("Selected site has no localized versions");
+            $(".modal .modal-content #locConfirmation").prop("disabled", true);
+        }
+    }
 });
+
 
