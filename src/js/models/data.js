@@ -9,7 +9,8 @@ export const sitesData = [
     {site: "support.solarwinds.com", policy: "ER_CSC_2", policy_loc: "ER_CSC_2", lang: ['NA']},
     {site: "www.loggly.com", policy: "ER_Loggly", policy_loc: "ER_Loggly", lang: ['NA']},
     {site: "www.pingdom.com", policy: "ER_Pingdom", policy_loc: "ER_Pingdom", lang: ['NA']},
-    {site: "www.dnsstuff.com", policy: "ER_DNSstuff", policy_loc: "ER_DNSstuff", lang: ['NA']}
+    {site: "www.dnsstuff.com", policy: "ER_DNSstuff", policy_loc: "ER_DNSstuff", lang: ['NA']},
+    {site: "www.papertrail.com", policy: "ER_Papertrail", policy_loc: "ER_Papertrail", lang: ['NA']}
 ];
 
 export const redirectTypes = [301, 302];
